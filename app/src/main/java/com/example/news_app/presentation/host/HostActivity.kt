@@ -6,11 +6,10 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.rememberNavController
+import com.example.news_app.navigation.Navigation
+import com.example.news_app.navigation.Screen
 import com.example.news_app.ui.theme.News_appTheme
 
 class HostActivity : ComponentActivity() {
@@ -25,8 +24,16 @@ class HostActivity : ComponentActivity() {
                 ) {
 
                     val navController = rememberNavController()
-                    
+                    val bottomItems = listOf(
+                        Screen.Feeds,
+                        Screen.Search,
+                        Screen.Profile
+                    )
 
+                    Navigation(
+                        navController,
+                        bottomItems
+                    )
                 }
             }
         }

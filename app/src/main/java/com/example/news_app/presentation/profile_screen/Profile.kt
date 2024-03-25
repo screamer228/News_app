@@ -1,4 +1,4 @@
-package com.example.news_app.presentation.feeds_screen
+package com.example.news_app.presentation.profile_screen
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Row
@@ -12,14 +12,14 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 
 @Composable
-fun FeedsScreen(navController: NavController) {
+fun ProfileScreen(navController: NavController) {
     Row(
         modifier = Modifier
             .fillMaxSize()
             .background(Color.White)
     ) {
         Text(
-            text = "Feeds Screen"
+            text = "Profile Screen"
         )
     }
 }
@@ -27,5 +27,5 @@ fun FeedsScreen(navController: NavController) {
 @Preview
 @Composable
 fun PreviewSearchScreen() {
-    FeedsScreen(rememberNavController())
+    ProfileScreen(rememberNavController())
 }
