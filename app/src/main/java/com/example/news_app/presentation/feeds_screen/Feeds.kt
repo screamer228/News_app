@@ -20,8 +20,9 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.news_app.R
+import com.example.news_app.model.ColumnNews
 import com.example.news_app.presentation.search_screen.SearchBar
-import com.example.news_app.model.NewsResult
+import com.example.news_app.model.LatestNews
 import com.example.news_app.utils.fillWidthOfParent
 
 @Composable
@@ -61,11 +62,11 @@ fun FeedsScreen(navController: NavController) {
                     top = 24.dp
                 ),
             news = listOf(
-                NewsResult(
+                LatestNews(
                     "Houston outlasts Texas A&M in OT, advances in NCAA tournament - ESPN",
                     "https://a2.espncdn.com/combiner/i?img=%2Fphoto%2F2024%2F0325%2Fr1309682_1296x729_16%2D9.jpg"
                 ),
-                NewsResult(
+                LatestNews(
                     "137 school children kidnapped by gunmen in Nigeria released, undergoing ‘psychosocial counseling,’ official says - CNN",
                     "https://media.cnn.com/api/v1/images/stellar/prod/ap24084242488722.jpg?c=16x9&q=w_800,c_fill"
                 )
@@ -77,6 +78,32 @@ fun FeedsScreen(navController: NavController) {
                     top = 12.dp
                 )
                 .fillWidthOfParent(16.dp)
+        )
+        NewsLazyColumn(
+            modifier = Modifier
+                .padding(
+                    top = 8.dp
+                ),
+            news = listOf(
+                ColumnNews(
+                    "Amazon Big Spring Sale: 20 early deals from Apple, Sonos and Sony you can shop today",
+                    null,
+                    "Jeff Dunn,Valentina Palladino",
+                    "2024-03-19T07:00:36Z"
+                ),
+                ColumnNews(
+                    "IQ Air Atem X Review: High-End Air Purifier",
+                    "https://media.wired.com/photos/65f34b7c9f86ee0288b77ce4/191:100/w_1280,c_limit/IQAir-Atem-X-collage.jpg",
+                    "Lisa Wood Shapiro",
+                    "2024-03-21T14:30:00Z"
+                ),
+                ColumnNews(
+                    "PlayStation Network is partially down",
+                    "https://cdn.vox-cdn.com/thumbor/mzgzqR4AUblRBIw7ow2O66rkeeQ=/0x0:2040x1360/1200x628/filters:focal(1020x680:1021x681)/cdn.vox-cdn.com/uploads/chorus_asset/file/23986616/acastro_STK097_02.jpg",
+                    "Sean Hollister",
+                    "2024-03-21T18:13:12Z"
+                )
+            )
         )
     }
 }

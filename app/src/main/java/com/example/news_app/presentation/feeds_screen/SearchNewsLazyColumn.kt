@@ -2,10 +2,10 @@ package com.example.news_app.presentation.feeds_screen
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
@@ -18,28 +18,28 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
-import com.example.news_app.model.LatestNews
+import com.example.news_app.model.ColumnNews
 
 @Composable
-fun LatestNewsLazyRow(
+fun NewsLazyColumn(
     modifier: Modifier,
-    news: List<LatestNews>
+    news: List<ColumnNews>
 ) {
-    LazyRow(
+    LazyColumn(
         modifier = modifier
     ) {
         itemsIndexed(news) { index, item ->
             Box(
                 modifier = Modifier
-                    .height(200.dp)
-                    .width(300.dp)
+                    .height(150.dp)
+                    .fillMaxWidth()
                     .padding(
-                        end = 12.dp
+                        bottom = 12.dp
                     )
                     .clip(RoundedCornerShape(8.dp))
             ) {
                 AsyncImage(
-                    model = item.imageUrl,
+                    model = item.imageUrl ?: "https://s0.rbk.ru/v6_top_pics/media/img/3/81/755719504466813.jpeg",
                     contentDescription = null,
                     modifier = Modifier
                         .fillMaxSize(),
@@ -50,13 +50,38 @@ fun LatestNewsLazyRow(
                     text = item.title,
                     modifier = Modifier
                         .align(
-                            Alignment.BottomStart
+                            Alignment.TopStart
                         )
                         .padding(
-                            12.dp
+                            vertical = 8.dp,
+                            horizontal = 12.dp
                         ),
                     color = Color.White,
                     fontWeight = FontWeight.Bold
+                )
+                Text(
+                    text = item.author,
+                            modifier = Modifier
+                                .align(
+                                    Alignment.BottomStart
+                                )
+                                .padding(
+                                    vertical = 8.dp,
+                                    horizontal = 12.dp
+                                ),
+                    color = Color.White
+                )
+                Text(
+                    text = item.publishedAt,
+                    modifier = Modifier
+                        .align(
+                            Alignment.BottomEnd
+                        )
+                        .padding(
+                            vertical = 8.dp,
+                            horizontal = 12.dp
+                        ),
+                    color = Color.White
                 )
             }
         }
