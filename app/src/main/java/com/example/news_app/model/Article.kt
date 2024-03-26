@@ -1,7 +1,5 @@
 package com.example.news_app.model
 
-import com.example.news_app.model.Source
-
 data class Article(
     val author: String,
     val content: String,
