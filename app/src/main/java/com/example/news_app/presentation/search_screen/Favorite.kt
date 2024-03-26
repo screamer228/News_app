@@ -1,7 +1,7 @@
 package com.example.news_app.presentation.search_screen
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -12,14 +12,14 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 
 @Composable
-fun SearchScreen(navController: NavController) {
-    Row(
+fun FavoriteScreen(navController: NavController) {
+    Column(
         modifier = Modifier
             .fillMaxSize()
             .background(Color.White)
     ) {
         Text(
-            text = "Search Screen"
+            text = "Favorite Screen"
         )
     }
 }
@@ -27,5 +27,5 @@ fun SearchScreen(navController: NavController) {
 @Preview
 @Composable
 fun PreviewSearchScreen() {
-    SearchScreen(rememberNavController())
+    FavoriteScreen(rememberNavController())
 }

@@ -1,0 +1,70 @@
+package com.example.news_app.presentation.feeds_screen
+
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.dp
+import coil.compose.AsyncImage
+import com.example.news_app.model.NewsResult
+
+@Composable
+fun LatestNewsLazyRow(
+    modifier: Modifier,
+    news: List<NewsResult>
+) {
+    LazyRow(
+        modifier = modifier
+    ) {
+        itemsIndexed(news) { index, item ->
+            Box(
+                modifier = Modifier
+                    .height(200.dp)
+                    .width(300.dp)
+                    .padding(
+                        end = 12.dp
+                    )
+                    .clip(RoundedCornerShape(8.dp))
+            ) {
+                AsyncImage(
+                    model = item.imageUrl,
+                    contentDescription = null,
+                    modifier = Modifier
+                        .fillMaxSize(),
+                    contentScale = ContentScale.Crop,
+                    alignment = Alignment.Center
+                )
+                Text(
+                    text = item.title,
+                    modifier = Modifier
+                        .align(
+                            Alignment.BottomStart
+                        )
+                        .padding(
+                            12.dp
+                        ),
+                    color = Color.White,
+                    fontWeight = FontWeight.Bold
+                )
+            }
+        }
+    }
+}
+
+//@Preview
+//@Composable
+//fun PreviewLatestNewsLazyRow(){
+//    LatestNewsLazyRow(Modifier)
+//}

@@ -3,14 +3,15 @@ package com.example.news_app.navigation
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.BottomNavigation
 import androidx.compose.material.BottomNavigationItem
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
@@ -18,9 +19,10 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
+import com.example.news_app.R
 import com.example.news_app.presentation.feeds_screen.FeedsScreen
 import com.example.news_app.presentation.profile_screen.ProfileScreen
-import com.example.news_app.presentation.search_screen.SearchScreen
+import com.example.news_app.presentation.search_screen.FavoriteScreen
 
 @Composable
 fun Navigation(
@@ -29,26 +31,40 @@ fun Navigation(
 ) {
     Scaffold(
         bottomBar = {
-            BottomNavigation {
+            BottomNavigation(
+                backgroundColor = Color.White
+            ) {
+                
                 val navBackStackEntry by navController.currentBackStackEntryAsState()
                 val currentDestination = navBackStackEntry?.destination
+
                 bottomItems.forEach { screen ->
+
+                    val selected = currentDestination?.hierarchy?.any { it.route == screen.route } == true
+
                     BottomNavigationItem(
-                        icon = { Icon(Icons.Filled.Favorite, contentDescription = null) },
-                        label = { Text(stringResource(screen.resourceId)) },
-                        selected = currentDestination?.hierarchy?.any { it.route == screen.route } == true,
+                        icon = { Icon(
+                            painter = painterResource(screen.iconId),
+                            contentDescription = null,
+                            tint = colorResource(id =
+                            if (selected) R.color.primary
+                                else R.color.gray_bn
+                            )
+                        ) },
+                        label = { Text(
+                            stringResource(screen.stringId),
+                            color = colorResource(id =
+                            if (selected) R.color.black
+                                else R.color.gray_bn
+                            )
+                        ) },
+                        selected = selected,
                         onClick = {
                             navController.navigate(screen.route) {
-                                // Pop up to the start destination of the graph to
-                                // avoid building up a large stack of destinations
-                                // on the back stack as users select items
                                 popUpTo(navController.graph.findStartDestination().id) {
                                     saveState = true
                                 }
-                                // Avoid multiple copies of the same destination when
-                                // reselecting the same item
                                 launchSingleTop = true
-                                // Restore state when reselecting a previously selected item
                                 restoreState = true
                             }
                         }
@@ -64,7 +80,7 @@ fun Navigation(
         )
         {
             composable(Screen.Feeds.route) { FeedsScreen(navController) }
-            composable(Screen.Search.route) { SearchScreen(navController) }
+            composable(Screen.Favorite.route) { FavoriteScreen(navController) }
             composable(Screen.Profile.route) { ProfileScreen(navController) }
         }
     }

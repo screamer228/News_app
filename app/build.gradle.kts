@@ -56,6 +56,9 @@ dependencies {
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")
 
+    //coil
+    implementation("io.coil-kt:coil-compose:2.6.0")
+
     //hilt
     val hiltVersion = "2.50"
     implementation ("com.google.dagger:hilt-android:$hiltVersion")

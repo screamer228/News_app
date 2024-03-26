@@ -26,7 +26,7 @@ class HostActivity : ComponentActivity() {
                     val navController = rememberNavController()
                     val bottomItems = listOf(
                         Screen.Feeds,
-                        Screen.Search,
+                        Screen.Favorite,
                         Screen.Profile
                     )
 
