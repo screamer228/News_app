@@ -1,12 +1,14 @@
 package com.example.news_app.presentation.feeds_screen
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -21,12 +23,14 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.news_app.R
 import com.example.news_app.model.ColumnNews
-import com.example.news_app.presentation.search_screen.SearchBar
 import com.example.news_app.model.LatestNews
 import com.example.news_app.utils.fillWidthOfParent
 
 @Composable
 fun FeedsScreen(navController: NavController) {
+
+
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -40,6 +44,11 @@ fun FeedsScreen(navController: NavController) {
         SearchBar(
             modifier = Modifier
                 .fillMaxWidth()
+                .border(
+                    1.dp,
+                    colorResource(R.color.gray_light),
+                    RoundedCornerShape(24.dp)
+                )
         )
         Row(
             modifier = Modifier

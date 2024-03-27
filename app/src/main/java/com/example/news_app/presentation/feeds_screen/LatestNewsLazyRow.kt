@@ -41,8 +41,8 @@ fun LatestNewsLazyRow(
                     .clickable {
                         navController.navigate("detail")
                     }
-                    .height(200.dp)
-                    .width(300.dp)
+                    .height(210.dp)
+                    .width(350.dp)
                     .padding(
                         start = paddings.paddingStart.dp,
                         end = paddings.paddingEnd.dp

@@ -23,7 +23,7 @@ import com.example.news_app.R
 import com.example.news_app.presentation.detail_screen.DetailScreen
 import com.example.news_app.presentation.feeds_screen.FeedsScreen
 import com.example.news_app.presentation.profile_screen.ProfileScreen
-import com.example.news_app.presentation.search_screen.FavoriteScreen
+import com.example.news_app.presentation.favorite_screen.FavoriteScreen
 
 @Composable
 fun Navigation(

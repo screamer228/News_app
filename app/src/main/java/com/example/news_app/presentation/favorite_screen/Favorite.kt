@@ -1,4 +1,4 @@
-package com.example.news_app.presentation.search_screen
+package com.example.news_app.presentation.favorite_screen
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column

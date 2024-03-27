@@ -1,5 +1,6 @@
 package com.example.news_app.presentation.detail_screen
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -43,6 +44,10 @@ fun DetailScreen(
     navController: NavController
 ) {
 
+    BackHandler {
+
+    }
+
     val detailNews = DetailNews(
         "Shohei Ohtani says he never participated in any sports gambling and accuses interpreter of ‘stealing money’ - CNN",
         null,
@@ -79,7 +84,7 @@ fun DetailScreen(
         ArrowBack(
             modifier = Modifier
                 .clickable {
-                    navController.navigateUp()
+                    navController.popBackStack()
                 }
                 .size(
                     50.dp,
@@ -159,7 +164,7 @@ fun Like(modifier: Modifier) {
                 checked.value = it
             }) {
             Icon(
-                if (checked.value) Icons.Filled.Favorite
+                imageVector = if (checked.value) Icons.Filled.Favorite
                 else Icons.Filled.FavoriteBorder,
                 contentDescription = null,
                 tint = if (checked.value) colorResource(R.color.primary)

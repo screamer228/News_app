@@ -1,6 +1,7 @@
-package com.example.news_app.presentation.search_screen
+package com.example.news_app.presentation.feeds_screen
 
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
@@ -23,41 +24,38 @@ import com.example.news_app.R
 
 @Composable
 fun SearchBar(modifier: Modifier) {
+
     var textState by remember { mutableStateOf("") }
 
     TextField(
         value = textState,
         onValueChange = { value -> textState = value },
         modifier = modifier,
-        leadingIcon = {
+        trailingIcon = {
             Icon(
                 painterResource(R.drawable.ic_search),
                 contentDescription = null,
                 modifier = Modifier
-                    .padding(
-                        start = 8.dp
-                    )
+                    .size(18.dp)
             )
         },
         placeholder = {
             Text(
                 stringResource(R.string.search),
                 modifier = Modifier
-                    .padding(
-                        vertical = 2.dp
-                    ),
-                fontSize = 14.sp,
+                    .padding(),
+                fontSize = 13.sp,
                 color = colorResource(R.color.gray_hard)
             )
         },
         colors = TextFieldDefaults.colors(
-            focusedContainerColor = colorResource(R.color.gray_light),
-            unfocusedContainerColor = colorResource(R.color.gray_light),
+            focusedContainerColor = Color.Transparent,
+            unfocusedContainerColor = Color.Transparent,
             focusedIndicatorColor = Color.Transparent,
             unfocusedIndicatorColor = Color.Transparent,
-            focusedLeadingIconColor = colorResource(R.color.gray_hard),
-            unfocusedLeadingIconColor = colorResource(R.color.gray_hard),
-            unfocusedSupportingTextColor = colorResource(R.color.gray_hard),
+            focusedTrailingIconColor = colorResource(R.color.gray_hard),
+            unfocusedTrailingIconColor = colorResource(R.color.gray_hard),
+            unfocusedSupportingTextColor = colorResource(R.color.gray_hard)
         ),
         singleLine = true,
         shape = RoundedCornerShape(24.dp)
