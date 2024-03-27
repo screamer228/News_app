@@ -59,8 +59,9 @@ fun FeedsScreen(navController: NavController) {
         LatestNewsLazyRow(
             modifier = Modifier
                 .padding(
-                    top = 24.dp
-                ),
+                    top = 12.dp
+                )
+                .fillWidthOfParent(16.dp),
             news = listOf(
                 LatestNews(
                     "Houston outlasts Texas A&M in OT, advances in NCAA tournament - ESPN",
@@ -70,7 +71,8 @@ fun FeedsScreen(navController: NavController) {
                     "137 school children kidnapped by gunmen in Nigeria released, undergoing ‘psychosocial counseling,’ official says - CNN",
                     "https://media.cnn.com/api/v1/images/stellar/prod/ap24084242488722.jpg?c=16x9&q=w_800,c_fill"
                 )
-            )
+            ),
+            navController = navController
         )
         ButtonsLazyRow(
             modifier = Modifier

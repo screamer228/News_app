@@ -20,6 +20,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.example.news_app.R
+import com.example.news_app.presentation.detail_screen.DetailScreen
 import com.example.news_app.presentation.feeds_screen.FeedsScreen
 import com.example.news_app.presentation.profile_screen.ProfileScreen
 import com.example.news_app.presentation.search_screen.FavoriteScreen
@@ -82,6 +83,7 @@ fun Navigation(
             composable(Screen.Feeds.route) { FeedsScreen(navController) }
             composable(Screen.Favorite.route) { FavoriteScreen(navController) }
             composable(Screen.Profile.route) { ProfileScreen(navController) }
+            composable("detail") { DetailScreen(navController)}
         }
     }
 }

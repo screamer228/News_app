@@ -1,5 +1,6 @@
 package com.example.news_app.presentation.feeds_screen
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
@@ -17,24 +18,34 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import com.example.news_app.model.LatestNews
+import com.example.news_app.utils.lazyRowPaddings
 
 @Composable
 fun LatestNewsLazyRow(
     modifier: Modifier,
-    news: List<LatestNews>
+    news: List<LatestNews>,
+    navController: NavController
 ) {
     LazyRow(
         modifier = modifier
     ) {
         itemsIndexed(news) { index, item ->
+
+            val paddings = lazyRowPaddings(index, news.size)
+
             Box(
                 modifier = Modifier
+                    .clickable {
+                        navController.navigate("detail")
+                    }
                     .height(200.dp)
                     .width(300.dp)
                     .padding(
-                        end = 12.dp
+                        start = paddings.paddingStart.dp,
+                        end = paddings.paddingEnd.dp
                     )
                     .clip(RoundedCornerShape(8.dp))
             ) {

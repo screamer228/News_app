@@ -11,5 +11,5 @@ sealed class Screen(
 ) {
     data object Feeds : Screen("feeds", R.string.feeds, R.drawable.ic_bn_feeds)
     data object Favorite : Screen("favorite", R.string.favorite, R.drawable.ic_bn_favorite)
-    data object Profile : Screen("profile", R.string.profile, R.drawable.ic_bn_feeds)
+    data object Profile : Screen("profile", R.string.profile, R.drawable.ic_bn_profile)
 }

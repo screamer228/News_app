@@ -25,7 +25,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.news_app.R
-import com.example.news_app.utils.buttonPaddings
+import com.example.news_app.utils.lazyRowPaddings
 
 @Composable
 fun ButtonsLazyRow(modifier: Modifier) {
@@ -45,14 +45,14 @@ fun ButtonsLazyRow(modifier: Modifier) {
     {
         itemsIndexed(buttonLabels) { index, text ->
 
-            val paddings = buttonPaddings(index, buttonLabels.size)
+            val paddings = lazyRowPaddings(index, buttonLabels.size)
 
             FilledTonalButton(
                 onClick = { selectedButtonIndex = index },
                 modifier = Modifier
                     .padding(
                         start = paddings.paddingStart.dp,
-                        end = 12.dp
+                        end = paddings.paddingEnd.dp
                     )
                     .selectable(
                         selected = index == selectedButtonIndex,

@@ -23,16 +23,16 @@ data class Paddings(
     val paddingEnd: Int
 )
 
-fun buttonPaddings(index: Int, itemCount: Int): Paddings {
-    val paddingStart = itemLazyRowPadding(index)
+fun lazyRowPaddings(index: Int, itemCount: Int): Paddings {
+    val paddingStart = itemPadding(index)
 
     val paddingEnd = if (index == (itemCount - 1)) 16
-    else 0
+    else 8
 
     return Paddings(paddingStart, paddingEnd)
 }
 
-fun itemLazyRowPadding(index: Int): Int {
+fun itemPadding(index: Int): Int {
     return if (index == 0) 16
     else 0
 }
