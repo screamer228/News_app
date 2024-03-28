@@ -22,11 +22,13 @@ import com.example.news_app.model.ColumnNews
 
 @Composable
 fun NewsLazyColumn(
-    modifier: Modifier,
     news: List<ColumnNews>
 ) {
     LazyColumn(
-        modifier = modifier
+        modifier = Modifier
+            .padding(
+                top = 8.dp
+            ),
     ) {
         itemsIndexed(news) { index, item ->
             Box(

@@ -3,7 +3,6 @@ package com.example.news_app.presentation.detail_screen
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -17,6 +16,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.IconToggleButton
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -45,7 +45,7 @@ fun DetailScreen(
 ) {
 
     BackHandler {
-
+        navController.navigateUp()
     }
 
     val detailNews = DetailNews(
@@ -83,9 +83,6 @@ fun DetailScreen(
         }
         ArrowBack(
             modifier = Modifier
-                .clickable {
-                    navController.popBackStack()
-                }
                 .size(
                     50.dp,
                     50.dp
@@ -98,7 +95,8 @@ fun DetailScreen(
                 .background(
                     colorResource(R.color.gray_light),
                     RoundedCornerShape(12.dp)
-                )
+                ),
+            navController
         )
         Like(
             modifier = Modifier
@@ -136,10 +134,15 @@ fun DetailScreen(
 }
 
 @Composable
-fun ArrowBack(modifier: Modifier) {
-    Box(
-        modifier = modifier,
-        contentAlignment = Alignment.Center
+fun ArrowBack(
+    modifier: Modifier,
+    navController: NavController
+) {
+    IconButton(
+        onClick = {
+                  navController.popBackStack()
+        },
+        modifier = modifier
     )
     {
         Image(
