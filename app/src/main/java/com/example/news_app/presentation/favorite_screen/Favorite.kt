@@ -12,7 +12,7 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 
 @Composable
-fun FavoriteScreen(navController: NavController) {
+fun FavoriteScreen (navController: NavController) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -21,6 +21,7 @@ fun FavoriteScreen(navController: NavController) {
         Text(
             text = "Favorite Screen"
         )
+
     }
 }
 
