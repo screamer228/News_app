@@ -6,7 +6,7 @@ import com.example.news_app.model.DetailNews
 
 @Database(
     entities = [DetailNews::class],
-    version = 1,
+    version = 3,
     exportSchema = false
 )
 

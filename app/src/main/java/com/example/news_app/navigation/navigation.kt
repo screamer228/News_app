@@ -63,10 +63,10 @@ fun Navigation(
                         onClick = {
                             navController.navigate(screen.route) {
                                 popUpTo(navController.graph.findStartDestination().id) {
-                                    saveState = true
+//                                    saveState = true
                                 }
-                                launchSingleTop = true
-                                restoreState = true
+//                                launchSingleTop = true
+//                                restoreState = true
                             }
                         }
                     )
@@ -81,9 +81,9 @@ fun Navigation(
         )
         {
             composable(Screen.Feeds.route) { FeedsScreen(navController) }
-            composable(Screen.Favorite.route) { FavoriteScreen(navController) }
+            composable(Screen.Favorite.route) { FavoriteScreen(navController = navController) }
             composable(Screen.Profile.route) { ProfileScreen(navController) }
-            composable("detail") { DetailScreen(navController)}
+            composable("detail") { DetailScreen(navController = navController)}
         }
     }
 }

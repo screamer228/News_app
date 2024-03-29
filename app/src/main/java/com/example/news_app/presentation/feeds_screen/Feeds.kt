@@ -23,7 +23,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.news_app.R
-import com.example.news_app.model.ColumnNews
+import com.example.news_app.model.DetailNews
 import com.example.news_app.utils.fillWidthOfParent
 
 @Composable
@@ -65,23 +65,26 @@ fun FeedsScreen(navController: NavController) {
             )
             NewsLazyColumn(
                 news = listOf(
-                    ColumnNews(
+                    DetailNews(
                         "Amazon Big Spring Sale: 20 early deals from Apple, Sonos and Sony you can shop today",
                         null,
                         "Jeff Dunn,Valentina Palladino",
-                        "2024-03-19T07:00:36Z"
+                        "2024-03-19T07:00:36Z",
+                        ""
                     ),
-                    ColumnNews(
+                    DetailNews(
                         "IQ Air Atem X Review: High-End Air Purifier",
                         "https://media.wired.com/photos/65f34b7c9f86ee0288b77ce4/191:100/w_1280,c_limit/IQAir-Atem-X-collage.jpg",
                         "Lisa Wood Shapiro",
-                        "2024-03-21T14:30:00Z"
+                        "2024-03-21T14:30:00Z",
+                        ""
                     ),
-                    ColumnNews(
+                    DetailNews(
                         "PlayStation Network is partially down",
                         "https://cdn.vox-cdn.com/thumbor/mzgzqR4AUblRBIw7ow2O66rkeeQ=/0x0:2040x1360/1200x628/filters:focal(1020x680:1021x681)/cdn.vox-cdn.com/uploads/chorus_asset/file/23986616/acastro_STK097_02.jpg",
                         "Sean Hollister",
-                        "2024-03-21T18:13:12Z"
+                        "2024-03-21T18:13:12Z",
+                        ""
                     )
                 )
             )
@@ -89,23 +92,26 @@ fun FeedsScreen(navController: NavController) {
         else {
             NewsLazyColumn(
                 news = listOf(
-                    ColumnNews(
+                    DetailNews(
                         "Amazon Big Spring Sale: 20 early deals from Apple, Sonos and Sony you can shop today",
                         null,
                         "Jeff Dunn,Valentina Palladino",
-                        "2024-03-19T07:00:36Z"
+                        "2024-03-19T07:00:36Z",
+                        ""
                     ),
-                    ColumnNews(
+                    DetailNews(
                         "IQ Air Atem X Review: High-End Air Purifier",
                         "https://media.wired.com/photos/65f34b7c9f86ee0288b77ce4/191:100/w_1280,c_limit/IQAir-Atem-X-collage.jpg",
                         "Lisa Wood Shapiro",
-                        "2024-03-21T14:30:00Z"
+                        "2024-03-21T14:30:00Z",
+                        ""
                     ),
-                    ColumnNews(
+                    DetailNews(
                         "PlayStation Network is partially down",
                         "https://cdn.vox-cdn.com/thumbor/mzgzqR4AUblRBIw7ow2O66rkeeQ=/0x0:2040x1360/1200x628/filters:focal(1020x680:1021x681)/cdn.vox-cdn.com/uploads/chorus_asset/file/23986616/acastro_STK097_02.jpg",
                         "Sean Hollister",
-                        "2024-03-21T18:13:12Z"
+                        "2024-03-21T18:13:12Z",
+                        ""
                     )
                 )
             )

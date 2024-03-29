@@ -1,5 +1,6 @@
 package com.example.news_app.presentation.feeds_screen
 
+import android.util.Log
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -18,12 +19,13 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
-import com.example.news_app.model.ColumnNews
+import com.example.news_app.model.DetailNews
 
 @Composable
 fun NewsLazyColumn(
-    news: List<ColumnNews>
+    news: List<DetailNews>
 ) {
+    Log.d("database", "newsLazyColumn: ${news.size}")
     LazyColumn(
         modifier = Modifier
             .padding(
@@ -41,7 +43,8 @@ fun NewsLazyColumn(
                     .clip(RoundedCornerShape(8.dp))
             ) {
                 AsyncImage(
-                    model = item.imageUrl ?: "https://s0.rbk.ru/v6_top_pics/media/img/3/81/755719504466813.jpeg",
+                    model = item.imageUrl
+                        ?: "https://s0.rbk.ru/v6_top_pics/media/img/3/81/755719504466813.jpeg",
                     contentDescription = null,
                     modifier = Modifier
                         .fillMaxSize(),
@@ -63,14 +66,14 @@ fun NewsLazyColumn(
                 )
                 Text(
                     text = item.author,
-                            modifier = Modifier
-                                .align(
-                                    Alignment.BottomStart
-                                )
-                                .padding(
-                                    vertical = 8.dp,
-                                    horizontal = 12.dp
-                                ),
+                    modifier = Modifier
+                        .align(
+                            Alignment.BottomStart
+                        )
+                        .padding(
+                            vertical = 8.dp,
+                            horizontal = 12.dp
+                        ),
                     color = Color.White
                 )
                 Text(

@@ -66,6 +66,7 @@ dependencies {
     //hilt
     val hiltVersion = "2.50"
     implementation ("com.google.dagger:hilt-android:$hiltVersion")
+    implementation("androidx.hilt:hilt-navigation-compose:1.2.0")
     kapt ("com.google.dagger:hilt-compiler:$hiltVersion")
 
     //retrofit
