@@ -1,6 +1,5 @@
 package com.example.news_app.presentation.favorite_screen
 
-import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -12,6 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import com.example.news_app.presentation.favorite_screen.viewmodel.FavoriteViewModel
 import com.example.news_app.presentation.feeds_screen.NewsLazyColumn
 
 @Composable
@@ -23,7 +23,6 @@ fun FavoriteScreen(
     val uiState by viewModel.uiState.collectAsState()
 
     viewModel.getFavoritesNews()
-    Log.d("database", "viewModel state updated")
 
     if (uiState.news.isEmpty()) {
         Text(

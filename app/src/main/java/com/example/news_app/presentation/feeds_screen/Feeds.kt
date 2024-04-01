@@ -9,6 +9,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
@@ -17,17 +19,22 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
 import com.example.news_app.R
 import com.example.news_app.model.DetailNews
+import com.example.news_app.presentation.detail_screen.viewmodel.DetailViewModel
 import com.example.news_app.utils.fillWidthOfParent
 
 @Composable
-fun FeedsScreen(navController: NavController) {
+fun FeedsScreen(
+    viewModel: DetailViewModel = hiltViewModel(),
+    navController: NavController
+) {
+
+    val uiState by viewModel.uiState.collectAsState()
 
     val isSearch = remember { mutableStateOf(false) }
 
@@ -119,11 +126,11 @@ fun FeedsScreen(navController: NavController) {
     }
 }
 
-@Preview
-@Composable
-fun PreviewFeedsScreen() {
-    FeedsScreen(rememberNavController())
-}
+//@Preview
+//@Composable
+//fun PreviewFeedsScreen() {
+//    FeedsScreen(rememberNavController())
+//}
 
 @Composable
 fun LatestNewsLabel(modifier: Modifier) {

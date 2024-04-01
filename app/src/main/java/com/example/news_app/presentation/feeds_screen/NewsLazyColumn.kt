@@ -1,6 +1,5 @@
 package com.example.news_app.presentation.feeds_screen
 
-import android.util.Log
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -25,7 +24,6 @@ import com.example.news_app.model.DetailNews
 fun NewsLazyColumn(
     news: List<DetailNews>
 ) {
-    Log.d("database", "newsLazyColumn: ${news.size}")
     LazyColumn(
         modifier = Modifier
             .padding(

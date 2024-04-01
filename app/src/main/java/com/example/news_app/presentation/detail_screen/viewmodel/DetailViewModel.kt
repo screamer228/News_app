@@ -1,8 +1,10 @@
-package com.example.news_app.presentation.detail_screen
+package com.example.news_app.presentation.detail_screen.viewmodel
 
 import androidx.lifecycle.ViewModel
 import com.example.news_app.data.repository.RoomRepository
 import com.example.news_app.model.DetailNews
+import com.example.news_app.presentation.detail_screen.DetailUiEvent
+import com.example.news_app.presentation.detail_screen.DetailUiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

@@ -37,6 +37,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import com.example.news_app.R
+import com.example.news_app.presentation.detail_screen.viewmodel.DetailViewModel
 
 @Composable
 fun DetailScreen(
@@ -51,14 +52,6 @@ fun DetailScreen(
         navController.navigateUp()
     }
 
-//    val detailNews = DetailNews(
-//        "Shohei Ohtani says he never participated in any sports gambling and accuses interpreter of ‘stealing money’ - CNN",
-//        null,
-//        "Raja Razek, Homero De la Fuente, Steve Almasy, Dalia Faheid, Elizabeth Wolfe",
-//        "2024-03-25T22:13:25Z",
-//        "Shohei Ohtani says he never participated in any sports gambling and accuses interpreter of ‘stealing money’CNN Live updates: Shohei Ohtani says he never gambled on sportsCNN Dodgers star Shohei Ohtani says he never bet on sports and interpreter Ippei Mizuhara…"
-//    )
-
     Box(
         modifier = Modifier
     ) {
@@ -66,7 +59,8 @@ fun DetailScreen(
             modifier = Modifier
         ) {
             AsyncImage(
-                model = "https://s0.rbk.ru/v6_top_pics/media/img/3/81/755719504466813.jpeg",
+                model = uiState.news.imageUrl
+                    ?: "https://s0.rbk.ru/v6_top_pics/media/img/3/81/755719504466813.jpeg",
                 contentDescription = null,
                 modifier = Modifier
                     .height(340.dp)

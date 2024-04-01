@@ -4,8 +4,8 @@ import android.content.Context
 import androidx.room.Room
 import com.example.news_app.data.repository.RoomRepository
 import com.example.news_app.data.repository.RoomRepositoryImpl
-import com.example.news_app.data.repository.room.NewsDao
-import com.example.news_app.data.repository.room.NewsDatabase
+import com.example.news_app.data.room.NewsDao
+import com.example.news_app.data.room.NewsDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

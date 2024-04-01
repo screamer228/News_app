@@ -1,6 +1,6 @@
 package com.example.news_app.data.repository
 
-import com.example.news_app.data.repository.room.NewsDao
+import com.example.news_app.data.room.NewsDao
 import com.example.news_app.model.DetailNews
 import com.example.news_app.presentation.favorite_screen.FavoriteUiState
 import javax.inject.Inject

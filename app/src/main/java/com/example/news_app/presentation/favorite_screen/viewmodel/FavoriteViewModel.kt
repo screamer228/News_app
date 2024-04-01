@@ -1,8 +1,8 @@
-package com.example.news_app.presentation.favorite_screen
+package com.example.news_app.presentation.favorite_screen.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import com.example.news_app.data.repository.RoomRepository
+import com.example.news_app.presentation.favorite_screen.FavoriteUiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -21,10 +21,12 @@ class FavoriteViewModel @Inject constructor(
     )
     val uiState: StateFlow<FavoriteUiState> = _uiState.asStateFlow()
 
+    init {
+        getFavoritesNews()
+    }
+
     fun getFavoritesNews()  {
         val news = roomRepository.getFavoriteNews()
         _uiState.value = news
-        Log.d("database", "uiState updated")
     }
-
 }
