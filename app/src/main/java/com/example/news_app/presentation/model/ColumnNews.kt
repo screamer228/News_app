@@ -1,4 +1,4 @@
-package com.example.news_app.model
+package com.example.news_app.presentation.model
 
 data class ColumnNews(
     val title: String,

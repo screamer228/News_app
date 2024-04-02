@@ -1,5 +1,6 @@
 package com.example.news_app.presentation.feeds_screen
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Column
@@ -24,8 +25,9 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.example.news_app.R
-import com.example.news_app.model.DetailNews
+import com.example.news_app.data.local.model.DetailNewsDBO
 import com.example.news_app.presentation.feeds_screen.viewmodel.FeedsViewModel
+import com.example.news_app.presentation.model.ColumnNews
 import com.example.news_app.utils.fillWidthOfParent
 
 @Composable
@@ -37,6 +39,10 @@ fun FeedsScreen(
     val uiState by viewModel.uiState.collectAsState()
 
     val isSearch = remember { mutableStateOf(false) }
+
+    BackHandler {
+        isSearch.value = false
+    }
 
     Column(
         modifier = Modifier
@@ -75,26 +81,23 @@ fun FeedsScreen(
             )
             NewsLazyColumn(
                 news = listOf(
-                    DetailNews(
+                    ColumnNews(
                         "Amazon Big Spring Sale: 20 early deals from Apple, Sonos and Sony you can shop today",
                         null,
                         "Jeff Dunn,Valentina Palladino",
-                        "2024-03-19T07:00:36Z",
-                        ""
+                        "2024-03-19T07:00:36Z"
                     ),
-                    DetailNews(
+                    ColumnNews(
                         "IQ Air Atem X Review: High-End Air Purifier",
                         "https://media.wired.com/photos/65f34b7c9f86ee0288b77ce4/191:100/w_1280,c_limit/IQAir-Atem-X-collage.jpg",
                         "Lisa Wood Shapiro",
-                        "2024-03-21T14:30:00Z",
-                        ""
+                        "2024-03-21T14:30:00Z"
                     ),
-                    DetailNews(
+                    ColumnNews(
                         "PlayStation Network is partially down",
                         "https://cdn.vox-cdn.com/thumbor/mzgzqR4AUblRBIw7ow2O66rkeeQ=/0x0:2040x1360/1200x628/filters:focal(1020x680:1021x681)/cdn.vox-cdn.com/uploads/chorus_asset/file/23986616/acastro_STK097_02.jpg",
                         "Sean Hollister",
-                        "2024-03-21T18:13:12Z",
-                        ""
+                        "2024-03-21T18:13:12Z"
                     )
                 )
             )
@@ -102,26 +105,23 @@ fun FeedsScreen(
         else {
             NewsLazyColumn(
                 news = listOf(
-                    DetailNews(
+                    ColumnNews(
                         "Amazon Big Spring Sale: 20 early deals from Apple, Sonos and Sony you can shop today",
                         null,
                         "Jeff Dunn,Valentina Palladino",
-                        "2024-03-19T07:00:36Z",
-                        ""
+                        "2024-03-19T07:00:36Z"
                     ),
-                    DetailNews(
+                    ColumnNews(
                         "IQ Air Atem X Review: High-End Air Purifier",
                         "https://media.wired.com/photos/65f34b7c9f86ee0288b77ce4/191:100/w_1280,c_limit/IQAir-Atem-X-collage.jpg",
                         "Lisa Wood Shapiro",
-                        "2024-03-21T14:30:00Z",
-                        ""
+                        "2024-03-21T14:30:00Z"
                     ),
-                    DetailNews(
+                    ColumnNews(
                         "PlayStation Network is partially down",
                         "https://cdn.vox-cdn.com/thumbor/mzgzqR4AUblRBIw7ow2O66rkeeQ=/0x0:2040x1360/1200x628/filters:focal(1020x680:1021x681)/cdn.vox-cdn.com/uploads/chorus_asset/file/23986616/acastro_STK097_02.jpg",
                         "Sean Hollister",
-                        "2024-03-21T18:13:12Z",
-                        ""
+                        "2024-03-21T18:13:12Z"
                     )
                 )
             )

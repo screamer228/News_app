@@ -12,6 +12,12 @@ import com.example.news_app.data.mapper.LatestNewsMapper
 import com.example.news_app.data.network.NewsApi
 import com.example.news_app.domain.repository.NewsRepository
 import com.example.news_app.data.repository.news.NewsRepositoryImpl
+import com.example.news_app.domain.usecase.GetFavoriteNewsUseCase
+import com.example.news_app.domain.usecase.GetFavoriteNewsUseCaseImpl
+import com.example.news_app.domain.usecase.categorynews.GetCategoryNewsUseCase
+import com.example.news_app.domain.usecase.categorynews.GetCategoryNewsUseCaseImpl
+import com.example.news_app.domain.usecase.columnnews.GetColumnNewsUseCase
+import com.example.news_app.domain.usecase.columnnews.GetColumnNewsUseCaseImpl
 import com.example.news_app.domain.usecase.latestnews.GetLatestNewsUseCase
 import com.example.news_app.domain.usecase.latestnews.GetLatestNewsUseCaseImpl
 import dagger.Module
@@ -27,11 +33,34 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 class AppModule {
 
+
+    @Provides
+    @Singleton
+    fun provideGetColumnNewsUseCase(
+        newsRepository: NewsRepository
+    ): GetColumnNewsUseCase {
+        return GetColumnNewsUseCaseImpl(
+            newsRepository,
+            com.example.news_app.domain.mapper.ColumnNewsMapper()
+        )
+    }
+
+    @Provides
+    @Singleton
+    fun provideGetCategoryNewsUseCase(
+        newsRepository: NewsRepository
+    ): GetCategoryNewsUseCase {
+        return GetCategoryNewsUseCaseImpl(
+            newsRepository,
+            com.example.news_app.domain.mapper.CategoryNewsMapper()
+        )
+    }
+
     @Provides
     @Singleton
     fun provideGetLatestNewsUseCase(
         newsRepository: NewsRepository
-    ) : GetLatestNewsUseCase {
+    ): GetLatestNewsUseCase {
         return GetLatestNewsUseCaseImpl(
             newsRepository,
             com.example.news_app.domain.mapper.LatestNewsMapper()
@@ -65,11 +94,23 @@ class AppModule {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
+
     @Provides
     @Singleton
-    fun provideRoomRepository(newsDao: NewsDao): RoomRepository = RoomRepositoryImpl(
-        newsDao
-    )
+    fun provideGetFavoriteNewsUseCase(roomRepository: RoomRepository): GetFavoriteNewsUseCase =
+        GetFavoriteNewsUseCaseImpl(
+            roomRepository,
+            com.example.news_app.domain.mapper.ColumnNewsMapper()
+        )
+
+    @Provides
+    @Singleton
+    fun provideRoomRepository(newsDao: NewsDao): RoomRepository {
+        return RoomRepositoryImpl(
+            newsDao,
+            ColumnNewsMapper()
+        )
+    }
 
     @Provides
     @Singleton

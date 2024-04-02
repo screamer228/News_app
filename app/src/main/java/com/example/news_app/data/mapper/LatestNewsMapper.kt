@@ -2,16 +2,14 @@ package com.example.news_app.data.mapper
 
 import com.example.news_app.data.network.model.news.Article
 import com.example.news_app.data.network.model.news.NewsDTO
-import com.example.news_app.domain.entity.latest.LatestNewsEntity
-import com.example.news_app.domain.entity.latest.LatestNewsListEntity
+import com.example.news_app.domain.entity.LatestNewsEntity
 
 class LatestNewsMapper {
 
-    fun mapDataToDomainList(news: NewsDTO): LatestNewsListEntity {
-        return LatestNewsListEntity(
-            news.articles.map {
+    fun mapDataToDomainList(news: NewsDTO): List<LatestNewsEntity> {
+        return news.articles.map {
                 mapDataToDomain(it)
-            })
+            }
     }
 
     fun mapDataToDomain(article: Article): LatestNewsEntity {

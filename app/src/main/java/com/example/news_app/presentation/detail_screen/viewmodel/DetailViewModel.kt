@@ -1,14 +1,17 @@
 package com.example.news_app.presentation.detail_screen.viewmodel
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.news_app.domain.repository.RoomRepository
-import com.example.news_app.model.DetailNews
+import com.example.news_app.data.local.model.DetailNewsDBO
 import com.example.news_app.presentation.detail_screen.DetailUiEvent
 import com.example.news_app.presentation.detail_screen.DetailUiState
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
@@ -32,22 +35,24 @@ class DetailViewModel @Inject constructor(
         isAlreadyFavorite()
     }
 
-    private fun navigateUp() {
-        TODO("Not yet implemented")
-    }
-
-    private fun saveFavoriteNews(news: DetailNews) {
-        roomRepository.insertFavoriteNews(news)
+    private fun saveFavoriteNews(news: DetailNewsDBO) {
+        viewModelScope.launch(Dispatchers.IO) {
+            roomRepository.insertFavoriteNews(news)
+        }
     }
 
     private fun isAlreadyFavorite() {
-        val news = roomRepository.getNewsByTitle(uiState.value.news.title)
-        oldFavoriteState = news != null
-        _uiState.value = _uiState.value.copy(isFavorite = oldFavoriteState)
+        viewModelScope.launch(Dispatchers.IO) {
+            val news = roomRepository.getNewsByTitle(uiState.value.news.title)
+            oldFavoriteState = news != null
+            _uiState.value = _uiState.value.copy(isFavorite = oldFavoriteState)
+        }
     }
 
-    private fun deleteFavoriteNews(news: DetailNews) {
-        roomRepository.deleteFavoriteNews(news)
+    private fun deleteFavoriteNews(news: DetailNewsDBO) {
+        viewModelScope.launch(Dispatchers.IO) {
+            roomRepository.deleteFavoriteNews(news)
+        }
     }
 
     fun checkCurrentLikedState() {

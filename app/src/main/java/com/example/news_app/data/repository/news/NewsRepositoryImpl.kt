@@ -1,13 +1,13 @@
 package com.example.news_app.data.repository.news
 
-import android.util.Log
 import com.example.news_app.data.mapper.CategoryNewsMapper
 import com.example.news_app.data.mapper.ColumnNewsMapper
 import com.example.news_app.data.mapper.LatestNewsMapper
 import com.example.news_app.data.network.NewsApi
-import com.example.news_app.domain.entity.category.CategoryNewsListEntity
+import com.example.news_app.domain.entity.CategoryNewsEntity
 import com.example.news_app.domain.entity.column.ColumnNewsListEntity
-import com.example.news_app.domain.entity.latest.LatestNewsListEntity
+import com.example.news_app.domain.entity.LatestNewsEntity
+import com.example.news_app.domain.entity.column.ColumnNewsEntity
 import com.example.news_app.domain.repository.NewsRepository
 import javax.inject.Inject
 
@@ -18,17 +18,13 @@ class NewsRepositoryImpl @Inject constructor(
     private val categoryNewsMapper: CategoryNewsMapper
 ) : NewsRepository {
 
-    override suspend fun getLatestNews(country: String): LatestNewsListEntity {
+    override suspend fun getLatestNews(country: String): List<LatestNewsEntity> {
         val response = newsApi.getLatestNews(country, API_KEY)
         if (response.isSuccessful) {
-            Log.d("retrofitTest","response successful")
             val newsResult = response.body()!!
             return latestNewsMapper.mapDataToDomainList(newsResult)
         }
-        Log.d("retrofitTest", "response failed")
-        return LatestNewsListEntity(
-            listOf()
-        )
+        return listOf()
     }
 
     override suspend fun getColumnNews(title: String): ColumnNewsListEntity {
@@ -43,15 +39,13 @@ class NewsRepositoryImpl @Inject constructor(
         )
     }
 
-    override suspend fun getCategoryNews(category: String): CategoryNewsListEntity {
+    override suspend fun getCategoryNews(category: String): List<ColumnNewsEntity> {
         val response = newsApi.getCategoryNews(category, API_KEY)
         if (response.isSuccessful) {
             val characterResult = response.body()!!
             return categoryNewsMapper.mapDataToDomainList(characterResult)
         }
-        return CategoryNewsListEntity(
-            listOf()
-        )
+        return listOf()
     }
 
     companion object {

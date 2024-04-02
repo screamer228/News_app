@@ -2,30 +2,33 @@ package com.example.news_app.data.repository.room
 
 import com.example.news_app.data.local.NewsDao
 import com.example.news_app.domain.repository.RoomRepository
-import com.example.news_app.model.DetailNews
+import com.example.news_app.data.local.model.DetailNewsDBO
+import com.example.news_app.data.mapper.ColumnNewsMapper
+import com.example.news_app.domain.entity.column.ColumnNewsEntity
 import com.example.news_app.presentation.favorite_screen.FavoriteUiState
 import javax.inject.Inject
 
 class RoomRepositoryImpl @Inject constructor(
-    private val newsDao: NewsDao
+    private val newsDao: NewsDao,
+    private val columnNewsMapper: ColumnNewsMapper
 ) : RoomRepository {
 
-    override fun getFavoriteNews(): FavoriteUiState {
+    override suspend fun getFavoriteNews(): List<ColumnNewsEntity> {
         val news = newsDao.getFavoriteNews()
 
-        if (news != null) return FavoriteUiState(news)
-        else return FavoriteUiState(listOf())
+        if (news != null) return columnNewsMapper.mapDboToDomainList(news)
+        else return listOf()
     }
 
-    override fun getNewsByTitle(title: String): DetailNews? {
+    override suspend fun getNewsByTitle(title: String): DetailNewsDBO? {
         return newsDao.getNewsByTitle(title)
     }
 
-    override fun insertFavoriteNews(news: DetailNews) {
+    override suspend fun insertFavoriteNews(news: DetailNewsDBO) {
         newsDao.insertFavoriteNews(news)
     }
 
-    override fun deleteFavoriteNews(news: DetailNews) {
+    override suspend fun deleteFavoriteNews(news: DetailNewsDBO) {
         newsDao.deleteFavoriteNews(news)
     }
 }

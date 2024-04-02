@@ -20,7 +20,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import coil.compose.AsyncImage
-import com.example.news_app.model.LatestNews
+import com.example.news_app.presentation.model.LatestNews
 import com.example.news_app.utils.lazyRowPaddings
 
 @Composable

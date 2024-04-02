@@ -8,7 +8,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import com.example.news_app.model.LatestNews
+import com.example.news_app.presentation.model.LatestNews
 import com.example.news_app.utils.fillWidthOfParent
 
 @Composable

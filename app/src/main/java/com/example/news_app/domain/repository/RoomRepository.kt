@@ -1,15 +1,16 @@
 package com.example.news_app.domain.repository
 
-import com.example.news_app.model.DetailNews
+import com.example.news_app.data.local.model.DetailNewsDBO
+import com.example.news_app.domain.entity.column.ColumnNewsEntity
 import com.example.news_app.presentation.favorite_screen.FavoriteUiState
 
 interface RoomRepository {
 
-    fun getFavoriteNews(): FavoriteUiState
+    suspend fun getFavoriteNews(): List<ColumnNewsEntity>
 
-    fun getNewsByTitle(title: String): DetailNews?
+    suspend fun getNewsByTitle(title: String): DetailNewsDBO?
 
-    fun insertFavoriteNews(news: DetailNews)
+    suspend fun insertFavoriteNews(news: DetailNewsDBO)
 
-    fun deleteFavoriteNews(news: DetailNews)
+    suspend fun deleteFavoriteNews(news: DetailNewsDBO)
 }
