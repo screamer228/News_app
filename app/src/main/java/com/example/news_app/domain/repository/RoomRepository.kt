@@ -1,4 +1,4 @@
-package com.example.news_app.data.repository
+package com.example.news_app.domain.repository
 
 import com.example.news_app.model.DetailNews
 import com.example.news_app.presentation.favorite_screen.FavoriteUiState

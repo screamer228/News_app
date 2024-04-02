@@ -25,12 +25,12 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.example.news_app.R
 import com.example.news_app.model.DetailNews
-import com.example.news_app.presentation.detail_screen.viewmodel.DetailViewModel
+import com.example.news_app.presentation.feeds_screen.viewmodel.FeedsViewModel
 import com.example.news_app.utils.fillWidthOfParent
 
 @Composable
 fun FeedsScreen(
-    viewModel: DetailViewModel = hiltViewModel(),
+    viewModel: FeedsViewModel = hiltViewModel(),
     navController: NavController
 ) {
 
@@ -62,7 +62,10 @@ fun FeedsScreen(
         )
 
         if (isSearch.value) {
-            FeedsLatestNews(navController)
+            FeedsLatestNews(
+                navController
+//                uiState.latestNews
+            )
             ButtonsLazyRow(
                 modifier = Modifier
                     .padding(

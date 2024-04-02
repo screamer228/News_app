@@ -12,7 +12,10 @@ import com.example.news_app.model.LatestNews
 import com.example.news_app.utils.fillWidthOfParent
 
 @Composable
-fun FeedsLatestNews(navController: NavController){
+fun FeedsLatestNews(
+    navController: NavController
+//    news: List<LatestNews>
+){
     Row(
         modifier = Modifier
             .fillMaxWidth()
