@@ -1,9 +1,9 @@
 package com.example.news_app.presentation.detail_screen
 
-import com.example.news_app.data.local.model.DetailNewsDBO
+import com.example.news_app.presentation.model.DetailNews
 
 data class DetailUiState(
-    val news: DetailNewsDBO = DetailNewsDBO(
+    val news: DetailNews = DetailNews(
         "",
         null,
         "",

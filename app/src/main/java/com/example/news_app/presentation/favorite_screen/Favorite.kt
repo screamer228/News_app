@@ -22,7 +22,7 @@ fun FavoriteScreen(
 
     val uiState by viewModel.uiState.collectAsState()
 
-    viewModel.getFavoritesNews()
+    viewModel.getFavoritesList()
 
     if (uiState.news.isEmpty()) {
         Text(

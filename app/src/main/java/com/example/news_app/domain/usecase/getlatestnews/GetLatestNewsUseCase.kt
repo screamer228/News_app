@@ -1,4 +1,4 @@
-package com.example.news_app.domain.usecase.latestnews
+package com.example.news_app.domain.usecase.getlatestnews
 
 import com.example.news_app.presentation.model.LatestNews
 

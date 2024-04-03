@@ -2,8 +2,7 @@ package com.example.news_app.presentation.favorite_screen.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.news_app.domain.repository.RoomRepository
-import com.example.news_app.domain.usecase.GetFavoriteNewsUseCase
+import com.example.news_app.domain.usecase.getfavoritelist.GetFavoriteListUseCase
 import com.example.news_app.presentation.favorite_screen.FavoriteUiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -15,7 +14,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class FavoriteViewModel @Inject constructor(
-    private val getFavoriteNewsUseCase: GetFavoriteNewsUseCase
+    private val getFavoriteListUseCase: GetFavoriteListUseCase
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(
@@ -26,12 +25,12 @@ class FavoriteViewModel @Inject constructor(
     val uiState: StateFlow<FavoriteUiState> = _uiState.asStateFlow()
 
     init {
-        getFavoritesNews()
+        getFavoritesList()
     }
 
-    fun getFavoritesNews() {
+    fun getFavoritesList() {
         viewModelScope.launch(Dispatchers.IO) {
-            val news = getFavoriteNewsUseCase.getFavoriteNews()
+            val news = getFavoriteListUseCase.getFavoriteList()
             _uiState.value = news
         }
     }

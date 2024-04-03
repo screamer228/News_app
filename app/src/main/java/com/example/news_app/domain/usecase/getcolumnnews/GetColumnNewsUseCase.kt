@@ -1,4 +1,4 @@
-package com.example.news_app.domain.usecase.columnnews
+package com.example.news_app.domain.usecase.getcolumnnews
 
 import com.example.news_app.presentation.model.ColumnNewsState
 

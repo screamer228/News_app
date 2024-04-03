@@ -1,4 +1,4 @@
-package com.example.news_app.domain.usecase.latestnews
+package com.example.news_app.domain.usecase.getlatestnews
 
 import com.example.news_app.domain.mapper.LatestNewsMapper
 import com.example.news_app.domain.repository.NewsRepository

@@ -1,11 +1,10 @@
 package com.example.news_app.presentation.feeds_screen.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.news_app.domain.usecase.categorynews.GetCategoryNewsUseCase
-import com.example.news_app.domain.usecase.columnnews.GetColumnNewsUseCase
-import com.example.news_app.domain.usecase.latestnews.GetLatestNewsUseCase
+import com.example.news_app.domain.usecase.getcategorynews.GetCategoryNewsUseCase
+import com.example.news_app.domain.usecase.getcolumnnews.GetColumnNewsUseCase
+import com.example.news_app.domain.usecase.getlatestnews.GetLatestNewsUseCase
 import com.example.news_app.presentation.feeds_screen.FeedsUiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers

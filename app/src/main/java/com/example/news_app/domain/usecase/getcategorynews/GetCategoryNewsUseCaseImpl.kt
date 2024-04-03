@@ -1,4 +1,4 @@
-package com.example.news_app.domain.usecase.categorynews
+package com.example.news_app.domain.usecase.getcategorynews
 
 import com.example.news_app.domain.mapper.CategoryNewsMapper
 import com.example.news_app.domain.repository.NewsRepository
