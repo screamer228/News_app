@@ -27,9 +27,10 @@ class FeedsViewModel @Inject constructor(
     private val _uiState = MutableStateFlow(FeedsUiState())
     val uiState: StateFlow<FeedsUiState> = _uiState.asStateFlow()
 
-//    init {
-//        getLatestNews()
-//    }
+    init {
+        getLatestNews()
+        getCategoryNews()
+    }
 
     fun getLatestNews() {
         viewModelScope.launch(Dispatchers.IO) {

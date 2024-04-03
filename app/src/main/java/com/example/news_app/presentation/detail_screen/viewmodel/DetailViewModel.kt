@@ -3,6 +3,7 @@ package com.example.news_app.presentation.detail_screen.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.news_app.domain.usecase.deletefavoritenews.DeleteFavoriteNewsUseCase
+import com.example.news_app.domain.usecase.getdetailnews.GetDetailNewsUseCase
 import com.example.news_app.domain.usecase.getfavoritenews.GetFavoriteNewsUseCase
 import com.example.news_app.domain.usecase.savefavoritenews.SaveFavoriteNewsUseCase
 import com.example.news_app.presentation.detail_screen.DetailUiEvent
@@ -18,6 +19,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class DetailViewModel @Inject constructor(
+    private val getDetailNewsUseCase: GetDetailNewsUseCase,
     private val getFavoriteNewsUseCase: GetFavoriteNewsUseCase,
     private val saveFavoriteNewsUseCase: SaveFavoriteNewsUseCase,
     private val deleteFavoriteNewsUseCase: DeleteFavoriteNewsUseCase
@@ -30,6 +32,10 @@ class DetailViewModel @Inject constructor(
 
     init {
         isAlreadyFavorite()
+    }
+
+    fun getFavoriteNews(title: String) {
+        getDetailNewsUseCase.getDetailNews()
     }
 
     private fun isAlreadyFavorite() {

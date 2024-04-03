@@ -32,8 +32,8 @@ fun ButtonsLazyRow(modifier: Modifier) {
     val buttonLabels = listOf(
         stringResource(R.string.healthy),
         stringResource(R.string.technology),
-        stringResource(R.string.finance),
-        stringResource(R.string.arts),
+        stringResource(R.string.business),
+        stringResource(R.string.science),
         stringResource(R.string.sports)
     )
     var selectedButtonIndex by remember { mutableIntStateOf(0) }

@@ -23,14 +23,14 @@ class RoomRepositoryImpl @Inject constructor(
 
     override suspend fun getNewsByTitle(title: String): DetailNewsEntity? {
         val news = newsDao.getNewsByTitle(title)
-        return detailNewsMapper.mapDataToDomain(news)
+        return detailNewsMapper.mapDboToDomain(news)
     }
 
     override suspend fun insertFavoriteNews(news: DetailNewsEntity) {
-        newsDao.insertFavoriteNews(detailNewsMapper.mapDomainToData(news))
+        newsDao.insertFavoriteNews(detailNewsMapper.mapDomainToDbo(news))
     }
 
     override suspend fun deleteFavoriteNews(news: DetailNewsEntity) {
-        newsDao.deleteFavoriteNews(detailNewsMapper.mapDomainToData(news))
+        newsDao.deleteFavoriteNews(detailNewsMapper.mapDomainToDbo(news))
     }
 }

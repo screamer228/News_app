@@ -1,11 +1,12 @@
 package com.example.news_app.data.mapper
 
 import com.example.news_app.data.local.model.DetailNewsDBO
+import com.example.news_app.data.network.model.news.NewsDTO
 import com.example.news_app.domain.entity.DetailNewsEntity
 
 class DetailNewsMapper {
 
-    fun mapDomainToData(entity: DetailNewsEntity) : DetailNewsDBO {
+    fun mapDomainToDbo(entity: DetailNewsEntity): DetailNewsDBO {
         return DetailNewsDBO(
             title = entity.title,
             imageUrl = entity.imageUrl,
@@ -15,7 +16,7 @@ class DetailNewsMapper {
         )
     }
 
-    fun mapDataToDomain(dbo: DetailNewsDBO?) : DetailNewsEntity? {
+    fun mapDboToDomain(dbo: DetailNewsDBO?): DetailNewsEntity? {
         if (dbo != null) {
             return DetailNewsEntity(
                 title = dbo.title,
@@ -26,5 +27,16 @@ class DetailNewsMapper {
             )
         }
         return null
+    }
+
+    fun mapDtoToDomain(dto: NewsDTO): DetailNewsEntity? {
+        val news = dto.articles.first()
+        return DetailNewsEntity(
+            title = news.title,
+            imageUrl = news.urlToImage,
+            author = news.author,
+            publishedAt = news.publishedAt,
+            description = news.description
+        )
     }
 }

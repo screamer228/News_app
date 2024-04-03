@@ -11,4 +11,6 @@
     <string name="arts">Arts</string>
     <string name="sports">Sports</string>
     <string name="favorite">Favorite</string>
+    <string name="business">Business</string>
+    <string name="science">Science</string>
 </resources>

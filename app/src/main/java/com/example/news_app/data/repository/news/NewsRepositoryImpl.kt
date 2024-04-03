@@ -2,9 +2,11 @@ package com.example.news_app.data.repository.news
 
 import com.example.news_app.data.mapper.CategoryNewsMapper
 import com.example.news_app.data.mapper.ColumnNewsMapper
+import com.example.news_app.data.mapper.DetailNewsMapper
 import com.example.news_app.data.mapper.LatestNewsMapper
 import com.example.news_app.data.network.NewsApi
 import com.example.news_app.domain.entity.CategoryNewsEntity
+import com.example.news_app.domain.entity.DetailNewsEntity
 import com.example.news_app.domain.entity.column.ColumnNewsListEntity
 import com.example.news_app.domain.entity.LatestNewsEntity
 import com.example.news_app.domain.entity.column.ColumnNewsEntity
@@ -15,7 +17,8 @@ class NewsRepositoryImpl @Inject constructor(
     private val newsApi: NewsApi,
     private val latestNewsMapper: LatestNewsMapper,
     private val columnNewsMapper: ColumnNewsMapper,
-    private val categoryNewsMapper: CategoryNewsMapper
+    private val categoryNewsMapper: CategoryNewsMapper,
+    private val detailNewsMapper: DetailNewsMapper
 ) : NewsRepository {
 
     override suspend fun getLatestNews(country: String): List<LatestNewsEntity> {
@@ -23,6 +26,15 @@ class NewsRepositoryImpl @Inject constructor(
         if (response.isSuccessful) {
             val newsResult = response.body()!!
             return latestNewsMapper.mapDataToDomainList(newsResult)
+        }
+        return listOf()
+    }
+
+    override suspend fun getCategoryNews(category: String): List<ColumnNewsEntity> {
+        val response = newsApi.getCategoryNews(category, API_KEY)
+        if (response.isSuccessful) {
+            val newsResult = response.body()!!
+            return categoryNewsMapper.mapDataToDomainList(newsResult)
         }
         return listOf()
     }
@@ -39,13 +51,13 @@ class NewsRepositoryImpl @Inject constructor(
         )
     }
 
-    override suspend fun getCategoryNews(category: String): List<ColumnNewsEntity> {
-        val response = newsApi.getCategoryNews(category, API_KEY)
+    override suspend fun getDetailNews(title: String): DetailNewsEntity? {
+        val response = newsApi.getColumnNews(title, FROM, SORT_BY, API_KEY)
         if (response.isSuccessful) {
-            val characterResult = response.body()!!
-            return categoryNewsMapper.mapDataToDomainList(characterResult)
+            val newsResult = response.body()!!
+            return detailNewsMapper.mapDtoToDomain(newsResult)
         }
-        return listOf()
+        return DetailNewsEntity()
     }
 
     companion object {
