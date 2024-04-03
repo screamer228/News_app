@@ -18,7 +18,6 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
-import com.example.news_app.data.local.model.DetailNewsDBO
 import com.example.news_app.presentation.model.ColumnNews
 
 @Composable
