@@ -28,7 +28,7 @@ import com.example.news_app.presentation.favorite_screen.FavoriteScreen
 @Composable
 fun Navigation(
     navController: NavHostController,
-    bottomItems: List<Screen>
+    bottomItems: List<ScreenBottomNav>
 ) {
     Scaffold(
         bottomBar = {
@@ -76,13 +76,13 @@ fun Navigation(
     ) { innerPadding ->
         NavHost(
             navController,
-            startDestination = Screen.Feeds.route,
+            startDestination = ScreenBottomNav.Feeds.route,
             Modifier.padding(innerPadding)
         )
         {
-            composable(Screen.Feeds.route) { FeedsScreen(navController = navController) }
-            composable(Screen.Favorite.route) { FavoriteScreen(navController = navController) }
-            composable(Screen.Profile.route) { ProfileScreen(navController) }
+            composable(ScreenBottomNav.Feeds.route) { FeedsScreen(navController = navController) }
+            composable(ScreenBottomNav.Favorite.route) { FavoriteScreen(navController = navController) }
+            composable(ScreenBottomNav.Profile.route) { ProfileScreen(navController) }
             composable("detail") { DetailScreen(navController = navController)}
         }
     }

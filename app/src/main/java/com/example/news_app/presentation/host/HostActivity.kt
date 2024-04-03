@@ -9,7 +9,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
 import com.example.news_app.navigation.Navigation
-import com.example.news_app.navigation.Screen
+import com.example.news_app.navigation.ScreenBottomNav
 import com.example.news_app.ui.theme.News_appTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -27,9 +27,9 @@ class HostActivity : ComponentActivity() {
 
                     val navController = rememberNavController()
                     val bottomItems = listOf(
-                        Screen.Feeds,
-                        Screen.Favorite,
-                        Screen.Profile
+                        ScreenBottomNav.Feeds,
+                        ScreenBottomNav.Favorite,
+                        ScreenBottomNav.Profile
                     )
 
                     Navigation(
