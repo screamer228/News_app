@@ -12,6 +12,7 @@ import com.example.news_app.presentation.detail_screen.uistate.DetailUiState
 import com.example.news_app.presentation.model.DetailNews
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -29,25 +30,53 @@ class DetailViewModel @Inject constructor(
     private val _uiState = MutableStateFlow(DetailUiState())
     val uiState: StateFlow<DetailUiState> = _uiState.asStateFlow()
 
-    private var oldFavoriteState: Boolean = false
+    private var oldIsFavoriteState: Boolean = false
 
-    init {
+    /*init {
         isAlreadyFavorite()
     }
+*/
+//    fun checkWhereLoadFrom(fromFavoriteScreen: Boolean, title: String) {
+//        viewModelScope.launch(Dispatchers.IO) {
+//
+//            val news = getFavoriteNewsFromDB(title)
+//
+//            if (fromFavoriteScreen) {
+//                _uiState.value = DetailUiState(news!!, true)
+//                oldIsFavoriteState = true
+//            }
+//            else {
+//                initData(title)
+//            }
+//        }
+//    }
 
-    fun getFavoriteNews(title: String) {
+    private suspend fun getFavoriteNewsFromDB(title: String): DetailNews? {
+        return getFavoriteNewsUseCase.getFavoriteNews(title)
+    }
+
+    private suspend fun getFavoriteNews(title: String) {
         viewModelScope.launch(Dispatchers.IO) {
             val news = getDetailNewsUseCase.getDetailNews(title)
             _uiState.value = _uiState.value.copy(news = news)
         }
     }
 
-    private fun isAlreadyFavorite() {
+    fun initData(title: String) {
         viewModelScope.launch(Dispatchers.IO) {
-            val news = getFavoriteNewsUseCase.getFavoriteNews(uiState.value.news.title)
-            oldFavoriteState = news != null
-            Log.d("likeCheck", "is in fav? $oldFavoriteState")
-            _uiState.value = _uiState.value.copy(isFavorite = oldFavoriteState)
+            val news = getFavoriteNewsFromDB(title)
+
+            if (news != null) {
+                _uiState.value = DetailUiState(news, true)
+                oldIsFavoriteState = true
+                Log.d("like", "initData makes isFavorite true")
+            }
+            else {
+                getFavoriteNews(title)
+                changeIsFav(false)
+                oldIsFavoriteState = false
+                Log.d("like", "initData makes isFavorite false")
+            }
         }
     }
 
@@ -66,8 +95,8 @@ class DetailViewModel @Inject constructor(
     fun checkCurrentLikedState() {
         val currentLikedState = uiState.value.isFavorite
         when {
-            oldFavoriteState && !currentLikedState -> deleteFavoriteNews(_uiState.value.news)
-            !oldFavoriteState && currentLikedState -> saveFavoriteNews(_uiState.value.news)
+            oldIsFavoriteState && !currentLikedState -> deleteFavoriteNews(_uiState.value.news)
+            !oldIsFavoriteState && currentLikedState -> saveFavoriteNews(_uiState.value.news)
         }
     }
 
@@ -80,5 +109,6 @@ class DetailViewModel @Inject constructor(
 
     private fun changeIsFav(bool: Boolean) {
         _uiState.value = _uiState.value.copy(isFavorite = bool)
+        Log.d("like", "changeIsFav triggered, uiState = ${uiState.value.isFavorite}")
     }
 }

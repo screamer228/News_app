@@ -22,8 +22,12 @@ import androidx.compose.material3.IconToggleButton
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
@@ -37,7 +41,9 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import com.example.news_app.R
+import com.example.news_app.presentation.detail_screen.uistate.DetailUiState
 import com.example.news_app.presentation.detail_screen.viewmodel.DetailViewModel
+import com.example.news_app.presentation.model.DetailNews
 
 @Composable
 fun DetailScreen(
@@ -48,9 +54,11 @@ fun DetailScreen(
 
     val uiState by viewModel.uiState.collectAsState()
 
-    viewModel.getFavoriteNews(title)
+    LaunchedEffect(key1 = Unit) {
+        viewModel.initData(title)
+    }
 
-    Log.d("detailNews", "title: ${uiState.news.title}, author: ${uiState.news.author}")
+    Log.d("like", "in Detail: ${uiState.isFavorite}")
 
     BackHandler {
         viewModel.checkCurrentLikedState()
@@ -64,8 +72,7 @@ fun DetailScreen(
             modifier = Modifier
         ) {
             AsyncImage(
-                model = uiState.news.imageUrl
-                    ?: "https://s0.rbk.ru/v6_top_pics/media/img/3/81/755719504466813.jpeg",
+                model = uiState.news.imageUrl,
                 contentDescription = null,
                 modifier = Modifier
                     .height(340.dp)
@@ -163,6 +170,7 @@ fun Like(
     isFavorite: Boolean,
     viewModel: DetailViewModel
 ) {
+    Log.d("like", "in Like function: $isFavorite")
     Surface(
         modifier = modifier
     ) {
@@ -171,7 +179,6 @@ fun Like(
             onCheckedChange = {
                 viewModel.postUiEvent(DetailUiEvent.LikeClick(it))
                 Log.d("like", "in viewModel: ${viewModel.uiState.value.isFavorite}")
-                Log.d("like", "in uiState: ${viewModel.uiState.value.isFavorite}")
             }) {
             Icon(
                 imageVector = if (isFavorite) Icons.Filled.Favorite

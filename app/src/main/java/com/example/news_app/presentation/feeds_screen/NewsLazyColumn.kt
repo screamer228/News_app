@@ -1,5 +1,6 @@
 package com.example.news_app.presentation.feeds_screen
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -17,12 +18,15 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import coil.compose.AsyncImage
+import com.example.news_app.navigation.ROUTE_DETAIL_SCREEN
 import com.example.news_app.presentation.model.ColumnNews
 
 @Composable
 fun NewsLazyColumn(
-    news: List<ColumnNews>
+    news: List<ColumnNews>,
+    navController: NavController
 ) {
     LazyColumn(
         modifier = Modifier
@@ -33,6 +37,9 @@ fun NewsLazyColumn(
         itemsIndexed(news) { index, item ->
             Box(
                 modifier = Modifier
+                    .clickable {
+                        navController.navigate("$ROUTE_DETAIL_SCREEN${item.title}")
+                    }
                     .height(150.dp)
                     .fillMaxWidth()
                     .padding(

@@ -19,7 +19,7 @@ class DetailNewsMapper {
         if (entity != null) {
             return DetailNews(
                 title = entity.title,
-                imageUrl = entity.imageUrl,
+                imageUrl = entity.imageUrl ?: "https://s0.rbk.ru/v6_top_pics/media/img/3/81/755719504466813.jpeg",
                 author = entity.author,
                 publishedAt = entity.publishedAt,
                 description = entity.description

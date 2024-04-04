@@ -83,27 +83,8 @@ fun FeedsScreen(
                     .fillWidthOfParent(16.dp)
             )
             NewsLazyColumn(
-                news = uiState.categoryNews
-//                news = listOf(
-//                    ColumnNews(
-//                        "Amazon Big Spring Sale: 20 early deals from Apple, Sonos and Sony you can shop today",
-//                        null,
-//                        "Jeff Dunn,Valentina Palladino",
-//                        "2024-03-19T07:00:36Z"
-//                    ),
-//                    ColumnNews(
-//                        "IQ Air Atem X Review: High-End Air Purifier",
-//                        "https://media.wired.com/photos/65f34b7c9f86ee0288b77ce4/191:100/w_1280,c_limit/IQAir-Atem-X-collage.jpg",
-//                        "Lisa Wood Shapiro",
-//                        "2024-03-21T14:30:00Z"
-//                    ),
-//                    ColumnNews(
-//                        "PlayStation Network is partially down",
-//                        "https://cdn.vox-cdn.com/thumbor/mzgzqR4AUblRBIw7ow2O66rkeeQ=/0x0:2040x1360/1200x628/filters:focal(1020x680:1021x681)/cdn.vox-cdn.com/uploads/chorus_asset/file/23986616/acastro_STK097_02.jpg",
-//                        "Sean Hollister",
-//                        "2024-03-21T18:13:12Z"
-//                    )
-//                )
+                news = uiState.categoryNews,
+                navController
             )
         }
         else {
@@ -127,17 +108,12 @@ fun FeedsScreen(
                         "Sean Hollister",
                         "2024-03-21T18:13:12Z"
                     )
-                )
+                ),
+                navController
             )
         }
     }
 }
-
-//@Preview
-//@Composable
-//fun PreviewFeedsScreen() {
-//    FeedsScreen(rememberNavController())
-//}
 
 @Composable
 fun LatestNewsLabel(modifier: Modifier) {
