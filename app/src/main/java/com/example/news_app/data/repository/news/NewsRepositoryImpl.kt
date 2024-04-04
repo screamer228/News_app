@@ -22,7 +22,7 @@ class NewsRepositoryImpl @Inject constructor(
 ) : NewsRepository {
 
     override suspend fun getLatestNews(country: String): List<LatestNewsEntity> {
-        val response = newsApi.getLatestNews(country, API_KEY)
+        val response = newsApi.getLatestNews(country)
         if (response.isSuccessful) {
             val newsResult = response.body()!!
             return latestNewsMapper.mapDataToDomainList(newsResult)
@@ -31,7 +31,7 @@ class NewsRepositoryImpl @Inject constructor(
     }
 
     override suspend fun getCategoryNews(category: String): List<ColumnNewsEntity> {
-        val response = newsApi.getCategoryNews(category, API_KEY)
+        val response = newsApi.getCategoryNews(category)
         if (response.isSuccessful) {
             val newsResult = response.body()!!
             return categoryNewsMapper.mapDataToDomainList(newsResult)
@@ -40,7 +40,7 @@ class NewsRepositoryImpl @Inject constructor(
     }
 
     override suspend fun getColumnNews(title: String): ColumnNewsListEntity {
-        val response = newsApi.getColumnNews(title, FROM, SORT_BY, API_KEY)
+        val response = newsApi.getColumnNews(title, SORT_BY)
         if (response.isSuccessful) {
             val newsResult = response.body()!!
             return columnNewsMapper.mapDataToDomainList(newsResult)
@@ -51,8 +51,8 @@ class NewsRepositoryImpl @Inject constructor(
         )
     }
 
-    override suspend fun getDetailNews(title: String): DetailNewsEntity? {
-        val response = newsApi.getColumnNews(title, FROM, SORT_BY, API_KEY)
+    override suspend fun getDetailNews(title: String): DetailNewsEntity {
+        val response = newsApi.getColumnNews(title, SORT_BY)
         if (response.isSuccessful) {
             val newsResult = response.body()!!
             return detailNewsMapper.mapDtoToDomain(newsResult)
@@ -61,7 +61,7 @@ class NewsRepositoryImpl @Inject constructor(
     }
 
     companion object {
-        const val API_KEY = "bcd245a2c038443ca208299a0f5f3ba0"
+
         const val FROM = "2024-03-23"
         const val SORT_BY = "popularity"
     }

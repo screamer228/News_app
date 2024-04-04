@@ -5,7 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.news_app.domain.usecase.getcategorynews.GetCategoryNewsUseCase
 import com.example.news_app.domain.usecase.getcolumnnews.GetColumnNewsUseCase
 import com.example.news_app.domain.usecase.getlatestnews.GetLatestNewsUseCase
-import com.example.news_app.presentation.feeds_screen.FeedsUiState
+import com.example.news_app.presentation.feeds_screen.uistate.FeedsUiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow

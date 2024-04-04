@@ -2,6 +2,7 @@ package com.example.news_app.data.local.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.example.news_app.data.base.BaseModelDBO
 
 @Entity(tableName = "news")
 data class DetailNewsDBO(
@@ -11,3 +12,4 @@ data class DetailNewsDBO(
     val publishedAt: String,
     val description: String
 )
+//    : BaseModelDBO

@@ -3,7 +3,7 @@ package com.example.news_app.presentation.favorite_screen.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.news_app.domain.usecase.getfavoritelist.GetFavoriteListUseCase
-import com.example.news_app.presentation.favorite_screen.FavoriteUiState
+import com.example.news_app.presentation.favorite_screen.uistate.FavoriteUiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow

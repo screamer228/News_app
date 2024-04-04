@@ -2,6 +2,7 @@ package com.example.news_app.di
 
 import android.content.Context
 import androidx.room.Room
+import com.example.news_app.BuildConfig
 import com.example.news_app.domain.repository.RoomRepository
 import com.example.news_app.data.repository.room.RoomRepositoryImpl
 import com.example.news_app.data.local.NewsDao
@@ -18,6 +19,8 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import okhttp3.Interceptor
+import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
@@ -33,23 +36,47 @@ class DataModule {
             newsApi,
             LatestNewsMapper(),
             ColumnNewsMapper(),
-            CategoryNewsMapper()
+            CategoryNewsMapper(),
+            DetailNewsMapper()
         )
     }
 
     @Provides
     @Singleton
-    fun provideRequestsApi(): NewsApi {
-        return provideRetrofitInstance().create(NewsApi::class.java)
+    fun provideRequestsApi(retrofit: Retrofit): NewsApi {
+        return retrofit.create(NewsApi::class.java)
     }
 
     @Provides
     @Singleton
-    fun provideRetrofitInstance(): Retrofit =
+    fun provideRetrofitInstance(okHttpClient: OkHttpClient): Retrofit =
         Retrofit.Builder()
-            .baseUrl(BASE_URL)
+            .baseUrl(BuildConfig.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
+            .client(okHttpClient)
             .build()
+
+    @Provides
+    @Singleton
+    fun provideOkhttpClient(interceptor: Interceptor) : OkHttpClient =
+        OkHttpClient().newBuilder()
+            .addInterceptor(interceptor)
+            .build()
+
+    @Provides
+    @Singleton
+    fun provideAuthInterceptor(): Interceptor {
+        return Interceptor { chain ->
+            val originalRequest = chain.request()
+            val newUrl = originalRequest.url.newBuilder()
+                .addQueryParameter("apiKey", BuildConfig.API_KEY)
+                .build()
+            val newRequest = originalRequest.newBuilder()
+                .url(newUrl)
+                .build()
+            chain.proceed(newRequest)
+        }
+    }
 
     @Provides
     @Singleton
@@ -67,7 +94,7 @@ class DataModule {
         Room.databaseBuilder(
             context,
             NewsDatabase::class.java,
-            DATABASE_NAME
+            BuildConfig.DATABASE_NAME
         )
             .allowMainThreadQueries()
             .fallbackToDestructiveMigration()
@@ -77,8 +104,4 @@ class DataModule {
     @Singleton
     fun provideNewsDao(newsDatabase: NewsDatabase): NewsDao = newsDatabase.newsDao()
 
-    companion object {
-        const val BASE_URL = "https://newsapi.org/"
-        const val DATABASE_NAME = "news-database"
-    }
 }

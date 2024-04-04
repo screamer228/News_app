@@ -42,10 +42,15 @@ import com.example.news_app.presentation.detail_screen.viewmodel.DetailViewModel
 @Composable
 fun DetailScreen(
     viewModel: DetailViewModel = hiltViewModel(),
-    navController: NavController
+    navController: NavController,
+    title: String
 ) {
 
     val uiState by viewModel.uiState.collectAsState()
+
+    viewModel.getFavoriteNews(title)
+
+    Log.d("detailNews", "title: ${uiState.news.title}, author: ${uiState.news.author}")
 
     BackHandler {
         viewModel.checkCurrentLikedState()

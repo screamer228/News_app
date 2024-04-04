@@ -11,21 +11,20 @@ interface NewsApi {
     @GET("v2/top-headlines")
     suspend fun getLatestNews(
         @Query("country") country: String,
-        @Query("apiKey") apiKey: String
+//        @Query("apiKey") apiKey: String
     ): Response<NewsDTO>
 
     @GET("v2/everything")
     suspend fun getColumnNews(
         @Query("q") title: String,
-        @Query("from") from: String,
+//        @Query("from") from: String,
         @Query("sortBy") sortBy: String,
-        @Query("apiKey") apiKey: String
+//        @Query("apiKey") apiKey: String
     ): Response<NewsDTO>
 
-    @GET("v2/top-headlines/sources")
+    @GET("v2/top-headlines")
     suspend fun getCategoryNews(
         @Query("category") category: String,
-        @Query("apiKey") apiKey: String
-    ): Response<NewsCategoryDTO>
-
+//        @Query("apiKey") apiKey: String
+    ): Response<NewsDTO>
 }

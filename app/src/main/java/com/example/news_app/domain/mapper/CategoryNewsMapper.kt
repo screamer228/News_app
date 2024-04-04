@@ -18,7 +18,7 @@ class CategoryNewsMapper {
             title = entity.title,
             imageUrl = entity.imageUrl
                 ?: "https://s0.rbk.ru/v6_top_pics/media/img/3/81/755719504466813.jpeg",
-            author = entity.author,
+            author = entity.author ?: "",
             publishedAt = entity.publishedAt
         )
     }

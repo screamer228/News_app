@@ -1,5 +1,6 @@
 package com.example.news_app.presentation.feeds_screen
 
+import android.util.Log
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -39,6 +40,8 @@ fun FeedsScreen(
     val uiState by viewModel.uiState.collectAsState()
 
     val isSearch = remember { mutableStateOf(false) }
+
+    Log.d("detailNews", "Feeds: ${uiState.latestNews.size}, ${uiState.latestNews.first().title}")
 
     BackHandler {
         isSearch.value = false
@@ -108,7 +111,7 @@ fun FeedsScreen(
                 news = listOf(
                     ColumnNews(
                         "Amazon Big Spring Sale: 20 early deals from Apple, Sonos and Sony you can shop today",
-                        null,
+                        "dddd.ru",
                         "Jeff Dunn,Valentina Palladino",
                         "2024-03-19T07:00:36Z"
                     ),
@@ -144,7 +147,7 @@ fun LatestNewsLabel(modifier: Modifier) {
         fontSize = 18.sp,
         fontWeight = FontWeight.Bold
     )
-}
+} // TODO("посмотреть как сделать стилизацию для текста в компоузе")
 
 @Composable
 fun SeeAll(modifier: Modifier) {

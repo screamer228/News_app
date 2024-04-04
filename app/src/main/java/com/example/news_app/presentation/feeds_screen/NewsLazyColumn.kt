@@ -41,8 +41,7 @@ fun NewsLazyColumn(
                     .clip(RoundedCornerShape(8.dp))
             ) {
                 AsyncImage(
-                    model = item.imageUrl
-                        ?: "https://s0.rbk.ru/v6_top_pics/media/img/3/81/755719504466813.jpeg",
+                    model = item.imageUrl,
                     contentDescription = null,
                     modifier = Modifier
                         .fillMaxSize(),

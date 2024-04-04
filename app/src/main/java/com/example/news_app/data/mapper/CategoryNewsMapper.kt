@@ -2,6 +2,8 @@ package com.example.news_app.data.mapper
 
 import com.example.news_app.data.network.model.category.NewsCategoryDTO
 import com.example.news_app.data.network.model.category.Source
+import com.example.news_app.data.network.model.news.Article
+import com.example.news_app.data.network.model.news.NewsDTO
 import com.example.news_app.domain.entity.CategoryNewsEntity
 import com.example.news_app.domain.entity.column.ColumnNewsEntity
 
@@ -9,18 +11,18 @@ const val IMAGE_URL = "https://s0.rbk.ru/v6_top_pics/media/img/3/81/755719504466
 
 class CategoryNewsMapper {
 
-    fun mapDataToDomainList(news: NewsCategoryDTO): List<ColumnNewsEntity> {
-        return news.sources.map {
+    fun mapDataToDomainList(news: NewsDTO): List<ColumnNewsEntity> {
+        return news.articles.map {
                 mapDataToDomain(it)
             }
     }
 
-    fun mapDataToDomain(source: Source): ColumnNewsEntity {
+    fun mapDataToDomain(article: Article): ColumnNewsEntity {
         return ColumnNewsEntity(
-            title = source.description,
-            imageUrl = IMAGE_URL,
-            author = "",
-            publishedAt = ""
+            title = article.title,
+            imageUrl = article.urlToImage ?: IMAGE_URL,
+            author = article.author,
+            publishedAt = article.publishedAt
         )
     }
 }

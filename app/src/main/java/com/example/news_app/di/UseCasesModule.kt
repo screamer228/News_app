@@ -12,6 +12,8 @@ import com.example.news_app.domain.usecase.getcategorynews.GetCategoryNewsUseCas
 import com.example.news_app.domain.usecase.getcategorynews.GetCategoryNewsUseCaseImpl
 import com.example.news_app.domain.usecase.getcolumnnews.GetColumnNewsUseCase
 import com.example.news_app.domain.usecase.getcolumnnews.GetColumnNewsUseCaseImpl
+import com.example.news_app.domain.usecase.getdetailnews.GetDetailNewsUseCase
+import com.example.news_app.domain.usecase.getdetailnews.GetDetailNewsUseCaseImpl
 import com.example.news_app.domain.usecase.getfavoritelist.GetFavoriteListUseCase
 import com.example.news_app.domain.usecase.getfavoritelist.GetFavoriteListUseCaseImpl
 import com.example.news_app.domain.usecase.getfavoritenews.GetFavoriteNewsUseCase
@@ -27,7 +29,17 @@ import dagger.hilt.android.components.ViewModelComponent
 
 @Module
 @InstallIn(ViewModelComponent::class)
-class DomainModule {
+class UseCasesModule {
+
+    @Provides
+    fun provideGetDetailNewsUseCase(
+        newsRepository: NewsRepository
+    ): GetDetailNewsUseCase {
+        return GetDetailNewsUseCaseImpl(
+            newsRepository,
+            DetailNewsMapper()
+        )
+    }
 
     @Provides
     fun provideGetColumnNewsUseCase(

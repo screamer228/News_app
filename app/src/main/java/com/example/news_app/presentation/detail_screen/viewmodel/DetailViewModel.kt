@@ -1,5 +1,6 @@
 package com.example.news_app.presentation.detail_screen.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.news_app.domain.usecase.deletefavoritenews.DeleteFavoriteNewsUseCase
@@ -7,7 +8,7 @@ import com.example.news_app.domain.usecase.getdetailnews.GetDetailNewsUseCase
 import com.example.news_app.domain.usecase.getfavoritenews.GetFavoriteNewsUseCase
 import com.example.news_app.domain.usecase.savefavoritenews.SaveFavoriteNewsUseCase
 import com.example.news_app.presentation.detail_screen.DetailUiEvent
-import com.example.news_app.presentation.detail_screen.DetailUiState
+import com.example.news_app.presentation.detail_screen.uistate.DetailUiState
 import com.example.news_app.presentation.model.DetailNews
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -35,13 +36,17 @@ class DetailViewModel @Inject constructor(
     }
 
     fun getFavoriteNews(title: String) {
-        getDetailNewsUseCase.getDetailNews()
+        viewModelScope.launch(Dispatchers.IO) {
+            val news = getDetailNewsUseCase.getDetailNews(title)
+            _uiState.value = _uiState.value.copy(news = news)
+        }
     }
 
     private fun isAlreadyFavorite() {
         viewModelScope.launch(Dispatchers.IO) {
             val news = getFavoriteNewsUseCase.getFavoriteNews(uiState.value.news.title)
             oldFavoriteState = news != null
+            Log.d("likeCheck", "is in fav? $oldFavoriteState")
             _uiState.value = _uiState.value.copy(isFavorite = oldFavoriteState)
         }
     }
