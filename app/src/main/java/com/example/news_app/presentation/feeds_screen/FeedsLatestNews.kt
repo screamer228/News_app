@@ -16,7 +16,7 @@ import com.example.news_app.utils.fillWidthOfParent
 fun FeedsLatestNews(
     navController: NavController,
     news: List<LatestNews>
-){
+) {
     Log.d("detailNews", "FeedsLatestNews: ${news.size}, ${news.first().title}")
 
     Row(
@@ -41,16 +41,6 @@ fun FeedsLatestNews(
             )
             .fillWidthOfParent(16.dp),
         news = news,
-//        news = listOf(
-//            LatestNews(
-//                "Houston outlasts Texas A&M in OT, advances in NCAA tournament - ESPN",
-//                "https://a2.espncdn.com/combiner/i?img=%2Fphoto%2F2024%2F0325%2Fr1309682_1296x729_16%2D9.jpg"
-//            ),
-//            LatestNews(
-//                "137 school children kidnapped by gunmen in Nigeria released, undergoing ‘psychosocial counseling,’ official says - CNN",
-//                "https://media.cnn.com/api/v1/images/stellar/prod/ap24084242488722.jpg?c=16x9&q=w_800,c_fill"
-//            )
-//        ),
         navController = navController
     )
 }

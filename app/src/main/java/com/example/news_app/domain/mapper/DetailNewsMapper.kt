@@ -5,7 +5,7 @@ import com.example.news_app.presentation.model.DetailNews
 
 class DetailNewsMapper {
 
-    fun mapUiToDomain(news: DetailNews) : DetailNewsEntity {
+    fun mapUiToDomain(news: DetailNews): DetailNewsEntity {
         return DetailNewsEntity(
             title = news.title,
             imageUrl = news.imageUrl,
@@ -15,11 +15,12 @@ class DetailNewsMapper {
         )
     }
 
-    fun mapDomainToUi(entity: DetailNewsEntity?) : DetailNews? {
+    fun mapDomainToUi(entity: DetailNewsEntity?): DetailNews? {
         if (entity != null) {
             return DetailNews(
                 title = entity.title,
-                imageUrl = entity.imageUrl ?: "https://s0.rbk.ru/v6_top_pics/media/img/3/81/755719504466813.jpeg",
+                imageUrl = entity.imageUrl
+                    ?: "https://s0.rbk.ru/v6_top_pics/media/img/3/81/755719504466813.jpeg",
                 author = entity.author,
                 publishedAt = entity.publishedAt,
                 description = entity.description

@@ -4,6 +4,6 @@ import com.example.news_app.presentation.model.ColumnNews
 
 interface GetCategoryNewsUseCase {
 
-    suspend fun getCategoryNews(category: String) : List<ColumnNews>
+    suspend fun getCategoryNews(category: String): List<ColumnNews>
 
 }

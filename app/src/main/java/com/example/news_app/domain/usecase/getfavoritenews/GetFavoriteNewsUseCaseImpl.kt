@@ -10,7 +10,7 @@ class GetFavoriteNewsUseCaseImpl @Inject constructor(
     private val detailNewsMapper: DetailNewsMapper
 ) : GetFavoriteNewsUseCase {
 
-    override suspend fun getFavoriteNews(title: String) : DetailNews? {
+    override suspend fun getFavoriteNews(title: String): DetailNews? {
         val news = roomRepository.getNewsByTitle(title)
         return detailNewsMapper.mapDomainToUi(news)
     }

@@ -61,8 +61,6 @@ class NewsRepositoryImpl @Inject constructor(
     }
 
     companion object {
-
-        const val FROM = "2024-03-23"
         const val SORT_BY = "popularity"
     }
 }

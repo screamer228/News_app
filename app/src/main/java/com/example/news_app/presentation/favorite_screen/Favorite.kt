@@ -28,20 +28,19 @@ fun FavoriteScreen(
 
     Column(
         modifier = Modifier
-        .fillMaxSize()
-        .background(Color.White)
-        .padding(
-            start = 16.dp,
-            top = 16.dp,
-            end = 16.dp
-        )
+            .fillMaxSize()
+            .background(Color.White)
+            .padding(
+                start = 16.dp,
+                top = 16.dp,
+                end = 16.dp
+            )
     ) {
         if (uiState.news.isEmpty()) {
             Text(
                 text = "Nothing was found"
             )
-        }
-        else {
+        } else {
             Text(
                 text = "Favorite Screen"
             )

@@ -13,7 +13,7 @@ class CategoryNewsMapper {
         }
     }
 
-    fun mapDomainToUi(entity: ColumnNewsEntity): ColumnNews {
+    private fun mapDomainToUi(entity: ColumnNewsEntity): ColumnNews {
         return ColumnNews(
             title = entity.title,
             imageUrl = entity.imageUrl

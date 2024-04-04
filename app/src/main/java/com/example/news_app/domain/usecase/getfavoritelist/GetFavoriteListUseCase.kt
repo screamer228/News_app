@@ -4,6 +4,6 @@ import com.example.news_app.presentation.favorite_screen.uistate.FavoriteUiState
 
 interface GetFavoriteListUseCase {
 
-    suspend fun getFavoriteList() : FavoriteUiState
+    suspend fun getFavoriteList(): FavoriteUiState
 
 }

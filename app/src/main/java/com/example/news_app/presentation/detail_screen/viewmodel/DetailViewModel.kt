@@ -32,25 +32,6 @@ class DetailViewModel @Inject constructor(
 
     private var oldIsFavoriteState: Boolean = false
 
-    /*init {
-        isAlreadyFavorite()
-    }
-*/
-//    fun checkWhereLoadFrom(fromFavoriteScreen: Boolean, title: String) {
-//        viewModelScope.launch(Dispatchers.IO) {
-//
-//            val news = getFavoriteNewsFromDB(title)
-//
-//            if (fromFavoriteScreen) {
-//                _uiState.value = DetailUiState(news!!, true)
-//                oldIsFavoriteState = true
-//            }
-//            else {
-//                initData(title)
-//            }
-//        }
-//    }
-
     private suspend fun getFavoriteNewsFromDB(title: String): DetailNews? {
         return getFavoriteNewsUseCase.getFavoriteNews(title)
     }
@@ -70,8 +51,7 @@ class DetailViewModel @Inject constructor(
                 _uiState.value = DetailUiState(news, true)
                 oldIsFavoriteState = true
                 Log.d("like", "initData makes isFavorite true")
-            }
-            else {
+            } else {
                 getFavoriteNews(title)
                 changeIsFav(false)
                 oldIsFavoriteState = false

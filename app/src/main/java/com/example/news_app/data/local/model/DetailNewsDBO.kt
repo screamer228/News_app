@@ -12,4 +12,3 @@ data class DetailNewsDBO(
     val publishedAt: String,
     val description: String
 )
-//    : BaseModelDBO

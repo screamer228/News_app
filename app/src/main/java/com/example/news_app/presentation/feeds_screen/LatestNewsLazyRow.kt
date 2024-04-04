@@ -77,9 +77,3 @@ fun LatestNewsLazyRow(
         }
     }
 }
-
-//@Preview
-//@Composable
-//fun PreviewLatestNewsLazyRow(){
-//    LatestNewsLazyRow(Modifier)
-//}

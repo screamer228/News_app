@@ -96,9 +96,3 @@ fun NewsLazyColumn(
         }
     }
 }
-
-//@Preview
-//@Composable
-//fun PreviewLatestNewsLazyRow(){
-//    LatestNewsLazyRow(Modifier)
-//}

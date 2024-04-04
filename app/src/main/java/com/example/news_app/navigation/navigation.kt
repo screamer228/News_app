@@ -35,30 +35,37 @@ fun Navigation(
             BottomNavigation(
                 backgroundColor = Color.White
             ) {
-                
+
                 val navBackStackEntry by navController.currentBackStackEntryAsState()
                 val currentDestination = navBackStackEntry?.destination
 
                 bottomItems.forEach { screen ->
 
-                    val selected = currentDestination?.hierarchy?.any { it.route == screen.route } == true
+                    val selected =
+                        currentDestination?.hierarchy?.any { it.route == screen.route } == true
 
                     BottomNavigationItem(
-                        icon = { Icon(
-                            painter = painterResource(screen.iconId),
-                            contentDescription = null,
-                            tint = colorResource(id =
-                            if (selected) R.color.primary
-                                else R.color.gray_bn
+                        icon = {
+                            Icon(
+                                painter = painterResource(screen.iconId),
+                                contentDescription = null,
+                                tint = colorResource(
+                                    id =
+                                    if (selected) R.color.primary
+                                    else R.color.gray_bn
+                                )
                             )
-                        ) },
-                        label = { Text(
-                            stringResource(screen.stringId),
-                            color = colorResource(id =
-                            if (selected) R.color.black
-                                else R.color.gray_bn
+                        },
+                        label = {
+                            Text(
+                                stringResource(screen.stringId),
+                                color = colorResource(
+                                    id =
+                                    if (selected) R.color.black
+                                    else R.color.gray_bn
+                                )
                             )
-                        ) },
+                        },
                         selected = selected,
                         onClick = {
                             navController.navigate(screen.route) {
@@ -83,11 +90,8 @@ fun Navigation(
             composable(ScreenBottomNav.Feeds.route) { FeedsScreen(navController = navController) }
             composable(ScreenBottomNav.Favorite.route) { FavoriteScreen(navController = navController) }
             composable(ScreenBottomNav.Profile.route) { ProfileScreen(navController) }
-//            composable("detail") { DetailScreen(navController = navController)}
             composable("$ROUTE_DETAIL_SCREEN$ARG_DETAIL_ROUTE") { navBackStackEntry ->
-
                 val title = navBackStackEntry.arguments?.getString(KEY_DETAIL_ROUTE)
-
                 title?.let {
                     DetailScreen(navController = navController, title = it)
                 }
@@ -95,6 +99,7 @@ fun Navigation(
         }
     }
 }
+
 const val ROUTE_DETAIL_SCREEN = "detail/"
 const val KEY_DETAIL_ROUTE = "title"
 const val ARG_DETAIL_ROUTE = "{title}"

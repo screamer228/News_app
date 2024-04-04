@@ -86,8 +86,7 @@ fun FeedsScreen(
                 news = uiState.categoryNews,
                 navController
             )
-        }
-        else {
+        } else {
             NewsLazyColumn(
                 news = listOf(
                     ColumnNews(
@@ -123,7 +122,7 @@ fun LatestNewsLabel(modifier: Modifier) {
         fontSize = 18.sp,
         fontWeight = FontWeight.Bold
     )
-} // TODO("посмотреть как сделать стилизацию для текста в компоузе")
+}
 
 @Composable
 fun SeeAll(modifier: Modifier) {

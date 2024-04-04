@@ -13,5 +13,4 @@ class DeleteFavoriteNewsUseCaseImpl @Inject constructor(
     override suspend fun deleteFavoriteNews(news: DetailNews) {
         roomRepository.deleteFavoriteNews(detailNewsMapper.mapUiToDomain(news))
     }
-
 }

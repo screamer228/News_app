@@ -58,7 +58,7 @@ class DataModule {
 
     @Provides
     @Singleton
-    fun provideOkhttpClient(interceptor: Interceptor) : OkHttpClient =
+    fun provideOkhttpClient(interceptor: Interceptor): OkHttpClient =
         OkHttpClient().newBuilder()
             .addInterceptor(interceptor)
             .build()

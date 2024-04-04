@@ -4,6 +4,6 @@ import com.example.news_app.presentation.model.LatestNews
 
 interface GetLatestNewsUseCase {
 
-    suspend fun getLatestNews(country: String) : List<LatestNews>
+    suspend fun getLatestNews(country: String): List<LatestNews>
 
 }

@@ -4,6 +4,6 @@ import com.example.news_app.presentation.model.DetailNews
 
 interface GetDetailNewsUseCase {
 
-    suspend fun getDetailNews(title: String) : DetailNews
+    suspend fun getDetailNews(title: String): DetailNews
 
 }

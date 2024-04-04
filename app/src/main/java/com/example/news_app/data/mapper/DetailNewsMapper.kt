@@ -1,7 +1,7 @@
 package com.example.news_app.data.mapper
 
 import com.example.news_app.data.local.model.DetailNewsDBO
-import com.example.news_app.data.network.model.news.NewsDTO
+import com.example.news_app.data.network.model.NewsDTO
 import com.example.news_app.domain.entity.DetailNewsEntity
 
 class DetailNewsMapper {
@@ -39,8 +39,7 @@ class DetailNewsMapper {
                 publishedAt = news.publishedAt,
                 description = news.description
             )
-        }
-        else {
+        } else {
             return DetailNewsEntity()
         }
     }
