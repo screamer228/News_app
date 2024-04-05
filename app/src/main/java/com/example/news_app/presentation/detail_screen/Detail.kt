@@ -1,6 +1,5 @@
 package com.example.news_app.presentation.detail_screen
 
-import android.util.Log
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -25,9 +24,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
@@ -41,9 +37,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import com.example.news_app.R
-import com.example.news_app.presentation.detail_screen.uistate.DetailUiState
 import com.example.news_app.presentation.detail_screen.viewmodel.DetailViewModel
-import com.example.news_app.presentation.model.DetailNews
 
 @Composable
 fun DetailScreen(
@@ -57,8 +51,6 @@ fun DetailScreen(
     LaunchedEffect(key1 = Unit) {
         viewModel.initData(title)
     }
-
-    Log.d("like", "in Detail: ${uiState.isFavorite}")
 
     BackHandler {
         viewModel.checkCurrentLikedState()
@@ -170,7 +162,6 @@ fun Like(
     isFavorite: Boolean,
     viewModel: DetailViewModel
 ) {
-    Log.d("like", "in Like function: $isFavorite")
     Surface(
         modifier = modifier
     ) {
@@ -178,7 +169,6 @@ fun Like(
             checked = isFavorite,
             onCheckedChange = {
                 viewModel.postUiEvent(DetailUiEvent.LikeClick(it))
-                Log.d("like", "in viewModel: ${viewModel.uiState.value.isFavorite}")
             }) {
             Icon(
                 imageVector = if (isFavorite) Icons.Filled.Favorite
@@ -228,7 +218,7 @@ fun Title(
             fontWeight = FontWeight.Bold
         )
         Text(
-            text = "Published by $author",
+            text = "$PUBLISHED_BY $author",
             modifier = Modifier
                 .padding(
                     start = 16.dp,
@@ -243,8 +233,4 @@ fun Title(
     }
 }
 
-//@Preview(showBackground = true)
-//@Composable
-//fun PreviewDetailScreen() {
-//    DetailScreen(rememberNavController())
-//}
+const val PUBLISHED_BY = "Published by"

@@ -13,4 +13,7 @@
     <string name="favorite">Favorite</string>
     <string name="business">Business</string>
     <string name="science">Science</string>
+    <string name="nothing_was_found">Nothing was found</string>
+    <string name="favorite_screen">Favorite Screen</string>
+    <string name="profile_screen">Profile Screen</string>
 </resources>

@@ -1,6 +1,5 @@
 package com.example.news_app.presentation.feeds_screen
 
-import android.util.Log
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -26,7 +25,6 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.example.news_app.R
-import com.example.news_app.data.local.model.DetailNewsDBO
 import com.example.news_app.presentation.feeds_screen.viewmodel.FeedsViewModel
 import com.example.news_app.presentation.model.ColumnNews
 import com.example.news_app.utils.fillWidthOfParent
@@ -40,8 +38,6 @@ fun FeedsScreen(
     val uiState by viewModel.uiState.collectAsState()
 
     val isSearch = remember { mutableStateOf(false) }
-
-    Log.d("detailNews", "Feeds: ${uiState.latestNews.size}, ${uiState.latestNews.first().title}")
 
     BackHandler {
         isSearch.value = false

@@ -10,9 +10,11 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import com.example.news_app.R
 import com.example.news_app.presentation.favorite_screen.viewmodel.FavoriteViewModel
 import com.example.news_app.presentation.feeds_screen.NewsLazyColumn
 
@@ -38,11 +40,11 @@ fun FavoriteScreen(
     ) {
         if (uiState.news.isEmpty()) {
             Text(
-                text = "Nothing was found"
+                text = stringResource(R.string.nothing_was_found)
             )
         } else {
             Text(
-                text = "Favorite Screen"
+                text = stringResource(R.string.favorite_screen)
             )
             NewsLazyColumn(
                 news = uiState.news,

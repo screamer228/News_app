@@ -32,14 +32,14 @@ class FeedsViewModel @Inject constructor(
         getCategoryNews()
     }
 
-    fun getLatestNews() {
+    private fun getLatestNews() {
         viewModelScope.launch(Dispatchers.IO) {
             val news = getLatestNewsUseCase.getLatestNews(country)
             _uiState.value = _uiState.value.copy(latestNews = news)
         }
     }
 
-    fun getCategoryNews() {
+    private fun getCategoryNews() {
         viewModelScope.launch(Dispatchers.IO) {
             val news = getCategoryNewsUseCase.getCategoryNews(category)
             _uiState.value = _uiState.value.copy(categoryNews = news)

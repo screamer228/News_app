@@ -1,6 +1,5 @@
 package com.example.news_app.presentation.detail_screen.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.news_app.domain.usecase.deletefavoritenews.DeleteFavoriteNewsUseCase
@@ -12,7 +11,6 @@ import com.example.news_app.presentation.detail_screen.uistate.DetailUiState
 import com.example.news_app.presentation.model.DetailNews
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -50,12 +48,10 @@ class DetailViewModel @Inject constructor(
             if (news != null) {
                 _uiState.value = DetailUiState(news, true)
                 oldIsFavoriteState = true
-                Log.d("like", "initData makes isFavorite true")
             } else {
                 getFavoriteNews(title)
                 changeIsFav(false)
                 oldIsFavoriteState = false
-                Log.d("like", "initData makes isFavorite false")
             }
         }
     }
@@ -89,6 +85,5 @@ class DetailViewModel @Inject constructor(
 
     private fun changeIsFav(bool: Boolean) {
         _uiState.value = _uiState.value.copy(isFavorite = bool)
-        Log.d("like", "changeIsFav triggered, uiState = ${uiState.value.isFavorite}")
     }
 }

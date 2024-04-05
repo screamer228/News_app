@@ -1,6 +1,5 @@
 package com.example.news_app.presentation.feeds_screen
 
-import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -17,7 +16,6 @@ fun FeedsLatestNews(
     navController: NavController,
     news: List<LatestNews>
 ) {
-    Log.d("detailNews", "FeedsLatestNews: ${news.size}, ${news.first().title}")
 
     Row(
         modifier = Modifier
