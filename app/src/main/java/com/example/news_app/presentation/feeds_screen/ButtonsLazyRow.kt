@@ -21,20 +21,25 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.news_app.R
+import com.example.news_app.presentation.feeds_screen.uistate.ButtonCategory
+import com.example.news_app.presentation.feeds_screen.uistate.FeedsUiEvent
+import com.example.news_app.presentation.feeds_screen.viewmodel.FeedsViewModel
 import com.example.news_app.utils.lazyRowPaddings
 
 @Composable
-fun ButtonsLazyRow(modifier: Modifier) {
-    val buttonLabels = listOf(
-        stringResource(R.string.healthy),
-        stringResource(R.string.technology),
-        stringResource(R.string.business),
-        stringResource(R.string.science),
-        stringResource(R.string.sports)
+fun ButtonsLazyRow(
+    modifier: Modifier,
+    viewModel: FeedsViewModel
+) {
+    val buttons = listOf(
+        ButtonCategory.Healthy,
+        ButtonCategory.Technology,
+        ButtonCategory.Business,
+        ButtonCategory.Science,
+        ButtonCategory.Sports
     )
     var selectedButtonIndex by remember { mutableIntStateOf(0) }
 
@@ -43,12 +48,17 @@ fun ButtonsLazyRow(modifier: Modifier) {
         verticalAlignment = Alignment.CenterVertically
     )
     {
-        itemsIndexed(buttonLabels) { index, text ->
+        itemsIndexed(buttons) { index, item ->
 
-            val paddings = lazyRowPaddings(index, buttonLabels.size)
+            val paddings = lazyRowPaddings(index, buttons.size)
 
             FilledTonalButton(
-                onClick = { selectedButtonIndex = index },
+                onClick = {
+                    selectedButtonIndex = index
+                    viewModel.postUiEvent(
+                        FeedsUiEvent.ButtonCategoryClick(item.category)
+                    )
+                },
                 modifier = Modifier
                     .padding(
                         start = paddings.paddingStart.dp,
@@ -56,7 +66,9 @@ fun ButtonsLazyRow(modifier: Modifier) {
                     )
                     .selectable(
                         selected = index == selectedButtonIndex,
-                        onClick = { selectedButtonIndex = index }
+                        onClick = {
+                            selectedButtonIndex = index
+                        }
                     ),
                 colors = ButtonDefaults.buttonColors(
                     containerColor =
@@ -76,7 +88,7 @@ fun ButtonsLazyRow(modifier: Modifier) {
             )
             {
                 Text(
-                    text = text,
+                    text = stringResource(item.labelId),
                     modifier = Modifier,
                     color = if (index == selectedButtonIndex) Color.White
                     else Color.Black,
@@ -86,10 +98,4 @@ fun ButtonsLazyRow(modifier: Modifier) {
             }
         }
     }
-}
-
-@Preview
-@Composable
-fun PreviewButtonsLazyRow() {
-    ButtonsLazyRow(Modifier)
 }

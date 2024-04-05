@@ -6,7 +6,7 @@ import com.example.news_app.domain.usecase.deletefavoritenews.DeleteFavoriteNews
 import com.example.news_app.domain.usecase.getdetailnews.GetDetailNewsUseCase
 import com.example.news_app.domain.usecase.getfavoritenews.GetFavoriteNewsUseCase
 import com.example.news_app.domain.usecase.savefavoritenews.SaveFavoriteNewsUseCase
-import com.example.news_app.presentation.detail_screen.DetailUiEvent
+import com.example.news_app.presentation.detail_screen.uistate.DetailUiEvent
 import com.example.news_app.presentation.detail_screen.uistate.DetailUiState
 import com.example.news_app.presentation.model.DetailNews
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -34,7 +34,7 @@ class DetailViewModel @Inject constructor(
         return getFavoriteNewsUseCase.getFavoriteNews(title)
     }
 
-    private suspend fun getFavoriteNews(title: String) {
+    private fun getFavoriteNews(title: String) {
         viewModelScope.launch(Dispatchers.IO) {
             val news = getDetailNewsUseCase.getDetailNews(title)
             _uiState.value = _uiState.value.copy(news = news)

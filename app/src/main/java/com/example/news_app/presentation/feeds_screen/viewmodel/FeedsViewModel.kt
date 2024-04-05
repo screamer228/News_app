@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.news_app.domain.usecase.getcategorynews.GetCategoryNewsUseCase
 import com.example.news_app.domain.usecase.getcolumnnews.GetColumnNewsUseCase
 import com.example.news_app.domain.usecase.getlatestnews.GetLatestNewsUseCase
+import com.example.news_app.presentation.feeds_screen.uistate.FeedsUiEvent
 import com.example.news_app.presentation.feeds_screen.uistate.FeedsUiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -22,14 +23,14 @@ class FeedsViewModel @Inject constructor(
 ) : ViewModel() {
 
     var country = "us"
-    var category = "health"
+//    var category = "health"
 
     private val _uiState = MutableStateFlow(FeedsUiState())
     val uiState: StateFlow<FeedsUiState> = _uiState.asStateFlow()
 
     init {
         getLatestNews()
-        getCategoryNews()
+        getCategoryNews("health")
     }
 
     private fun getLatestNews() {
@@ -39,7 +40,7 @@ class FeedsViewModel @Inject constructor(
         }
     }
 
-    private fun getCategoryNews() {
+    private fun getCategoryNews(category: String) {
         viewModelScope.launch(Dispatchers.IO) {
             val news = getCategoryNewsUseCase.getCategoryNews(category)
             _uiState.value = _uiState.value.copy(categoryNews = news)
@@ -48,5 +49,12 @@ class FeedsViewModel @Inject constructor(
 
     fun getColumnNews() {
 
+    }
+
+    fun postUiEvent(event: FeedsUiEvent) {
+        when (event) {
+            is FeedsUiEvent.ButtonCategoryClick -> getCategoryNews(event.category)
+            is FeedsUiEvent.SeeAllClick -> TODO()
+        }
     }
 }

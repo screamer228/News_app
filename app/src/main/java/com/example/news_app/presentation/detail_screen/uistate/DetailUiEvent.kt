@@ -1,4 +1,4 @@
-package com.example.news_app.presentation.detail_screen
+package com.example.news_app.presentation.detail_screen.uistate
 
 sealed class DetailUiEvent {
     data class LikeClick(val isFavorite: Boolean) : DetailUiEvent()

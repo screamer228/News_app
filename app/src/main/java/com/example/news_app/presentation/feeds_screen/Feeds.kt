@@ -76,7 +76,8 @@ fun FeedsScreen(
                     .padding(
                         top = 12.dp
                     )
-                    .fillWidthOfParent(16.dp)
+                    .fillWidthOfParent(16.dp),
+                viewModel
             )
             NewsLazyColumn(
                 news = uiState.categoryNews,

@@ -37,6 +37,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import com.example.news_app.R
+import com.example.news_app.presentation.detail_screen.uistate.DetailUiEvent
 import com.example.news_app.presentation.detail_screen.viewmodel.DetailViewModel
 
 @Composable
