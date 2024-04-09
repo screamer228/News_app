@@ -9,11 +9,15 @@ import com.example.news_app.presentation.feeds_screen.uistate.FeedsUiEvent
 import com.example.news_app.presentation.feeds_screen.uistate.FeedsUiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
+
+private const val DEFAULT_COUNTRY = "us"
+private const val INITIAL_CATEGORY = "health"
 
 @HiltViewModel
 class FeedsViewModel @Inject constructor(
@@ -22,7 +26,7 @@ class FeedsViewModel @Inject constructor(
     private val getColumnNewsUseCase: GetColumnNewsUseCase
 ) : ViewModel() {
 
-    var country = "us"
+    var country = DEFAULT_COUNTRY
 //    var category = "health"
 
     private val _uiState = MutableStateFlow(FeedsUiState())
@@ -30,7 +34,7 @@ class FeedsViewModel @Inject constructor(
 
     init {
         getLatestNews()
-        getCategoryNews("health")
+        getCategoryNews(INITIAL_CATEGORY)
     }
 
     private fun getLatestNews() {
