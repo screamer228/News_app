@@ -12,9 +12,10 @@ interface NewsApi {
         @Query("country") country: String
     ): Response<NewsDTO>
 
-    @GET("v2/everything")
+    @GET("v2/top-headlines")
     suspend fun getColumnNews(
         @Query("q") title: String,
+        @Query("country") country: String,
         @Query("sortBy") sortBy: String
     ): Response<NewsDTO>
 

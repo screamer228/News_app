@@ -1,5 +1,6 @@
 package com.example.news_app.presentation.detail_screen
 
+import android.util.Log
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -15,9 +16,11 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.FavoriteBorder
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.IconToggleButton
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -38,6 +41,7 @@ import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import com.example.news_app.R
 import com.example.news_app.presentation.detail_screen.uistate.DetailUiEvent
+import com.example.news_app.presentation.detail_screen.uistate.DetailUiState
 import com.example.news_app.presentation.detail_screen.viewmodel.DetailViewModel
 
 @Composable
@@ -49,6 +53,8 @@ fun DetailScreen(
 
     val uiState by viewModel.uiState.collectAsState()
 
+//    var loading by remember { mutableStateOf(uiState.isLoading)
+
     LaunchedEffect(key1 = Unit) {
         viewModel.initData(title)
     }
@@ -58,14 +64,48 @@ fun DetailScreen(
         navController.navigateUp()
     }
 
+    Surface {
+        if (uiState.isLoading) {
+            Log.d("imageTest", "while Loading: ${uiState.news.imageUrl}")
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+            ) {
+                CircularProgressIndicator(
+                    modifier = Modifier
+                        .size(48.dp)
+                        .align(Alignment.Center),
+                    color = MaterialTheme.colorScheme.secondary,
+                    trackColor = MaterialTheme.colorScheme.surfaceVariant,
+                )
+            }
+        } else {
+            Log.d("imageTest", "what put: ${uiState.news.imageUrl}")
+            ShowContent(
+                navController,
+                uiState,
+                viewModel
+            )
+        }
+    }
+}
+
+@Composable
+fun ShowContent(
+    navController: NavController,
+    detailItem: DetailUiState,
+    viewModel: DetailViewModel
+) {
     Box(
         modifier = Modifier
+            .fillMaxSize()
     ) {
         Column(
             modifier = Modifier
+                .fillMaxSize()
         ) {
             AsyncImage(
-                model = uiState.news.imageUrl,
+                model = detailItem.news.imageUrl,
                 contentDescription = null,
                 modifier = Modifier
                     .height(340.dp)
@@ -74,7 +114,7 @@ fun DetailScreen(
                 alignment = Alignment.Center
             )
             Text(
-                text = uiState.news.description,
+                text = detailItem.news.description,
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(
@@ -114,7 +154,7 @@ fun DetailScreen(
                     shape = RoundedCornerShape(30.dp)
                 )
                 .shadow(4.dp, shape = RoundedCornerShape(30.dp)),
-            uiState.isFavorite,
+            detailItem.isFavorite,
             viewModel
         )
         Title(
@@ -130,9 +170,9 @@ fun DetailScreen(
                     shape = RoundedCornerShape(16.dp)
                 )
                 .align(Alignment.TopCenter),
-            uiState.news.publishedAt,
-            uiState.news.title,
-            uiState.news.author
+            detailItem.news.publishedAt,
+            detailItem.news.title,
+            detailItem.news.author
         )
     }
 }

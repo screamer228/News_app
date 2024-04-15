@@ -30,6 +30,12 @@ fun FeedsLatestNews(
         )
         SeeAll(
             modifier = Modifier
+//                .clickable {
+//                    NewsLazyColumn(
+//                        news = news,
+//                        navController = navController
+//                    )
+//                }
         )
     }
     LatestNewsLazyRow(

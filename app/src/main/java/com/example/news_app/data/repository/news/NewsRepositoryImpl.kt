@@ -5,7 +5,6 @@ import com.example.news_app.data.mapper.ColumnNewsMapper
 import com.example.news_app.data.mapper.DetailNewsMapper
 import com.example.news_app.data.mapper.LatestNewsMapper
 import com.example.news_app.data.network.NewsApi
-import com.example.news_app.domain.entity.CategoryNewsEntity
 import com.example.news_app.domain.entity.DetailNewsEntity
 import com.example.news_app.domain.entity.column.ColumnNewsListEntity
 import com.example.news_app.domain.entity.LatestNewsEntity
@@ -40,7 +39,7 @@ class NewsRepositoryImpl @Inject constructor(
     }
 
     override suspend fun getColumnNews(title: String): ColumnNewsListEntity {
-        val response = newsApi.getColumnNews(title, SORT_BY)
+        val response = newsApi.getColumnNews(title, COUNTRY, SORT_BY)
         if (response.isSuccessful) {
             val newsResult = response.body()!!
             return columnNewsMapper.mapDataToDomainList(newsResult)
@@ -52,7 +51,7 @@ class NewsRepositoryImpl @Inject constructor(
     }
 
     override suspend fun getDetailNews(title: String): DetailNewsEntity {
-        val response = newsApi.getColumnNews(title, SORT_BY)
+        val response = newsApi.getColumnNews(title, COUNTRY, SORT_BY)
         if (response.isSuccessful) {
             val newsResult = response.body()!!
             return detailNewsMapper.mapDtoToDomain(newsResult)
@@ -61,6 +60,7 @@ class NewsRepositoryImpl @Inject constructor(
     }
 
     companion object {
+        const val COUNTRY = "us"
         const val SORT_BY = "popularity"
     }
 }

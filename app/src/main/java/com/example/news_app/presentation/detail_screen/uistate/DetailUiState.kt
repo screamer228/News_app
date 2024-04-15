@@ -10,5 +10,6 @@ data class DetailUiState(
         "",
         ""
     ),
-    val isFavorite: Boolean = false
+    val isFavorite: Boolean = false,
+    val isLoading: Boolean = true
 )

@@ -10,7 +10,7 @@ class DetailNewsMapper {
         return DetailNewsDBO(
             title = entity.title,
             imageUrl = entity.imageUrl,
-            author = entity.author,
+            author = entity.author ?: "unknown",
             publishedAt = entity.publishedAt,
             description = entity.description
         )
@@ -30,17 +30,13 @@ class DetailNewsMapper {
     }
 
     fun mapDtoToDomain(dto: NewsDTO): DetailNewsEntity {
-        if (dto.articles.isNotEmpty()) {
-            val news = dto.articles.first()
-            return DetailNewsEntity(
-                title = news.title,
-                imageUrl = news.urlToImage,
-                author = news.author,
-                publishedAt = news.publishedAt,
-                description = news.description
-            )
-        } else {
-            return DetailNewsEntity()
-        }
+        val news = dto.articles.first()
+        return DetailNewsEntity(
+            title = news.title,
+            imageUrl = news.urlToImage,
+            author = news.author,
+            publishedAt = news.publishedAt,
+            description = news.description
+        )
     }
 }

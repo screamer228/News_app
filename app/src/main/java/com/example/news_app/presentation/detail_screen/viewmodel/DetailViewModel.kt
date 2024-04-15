@@ -37,7 +37,7 @@ class DetailViewModel @Inject constructor(
     private fun getFavoriteNews(title: String) {
         viewModelScope.launch(Dispatchers.IO) {
             val news = getDetailNewsUseCase.getDetailNews(title)
-            _uiState.value = _uiState.value.copy(news = news)
+            _uiState.value = _uiState.value.copy(news = news, isLoading = false)
         }
     }
 
@@ -46,7 +46,7 @@ class DetailViewModel @Inject constructor(
             val news = getFavoriteNewsFromDB(title)
 
             if (news != null) {
-                _uiState.value = DetailUiState(news, true)
+                _uiState.value = DetailUiState(news, true, isLoading = false)
                 oldIsFavoriteState = true
             } else {
                 getFavoriteNews(title)
