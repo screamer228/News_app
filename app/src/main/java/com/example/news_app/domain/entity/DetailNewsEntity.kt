@@ -5,5 +5,5 @@ data class DetailNewsEntity(
     val imageUrl: String? = "",
     val author: String? = "",
     val publishedAt: String = "",
-    val description: String = ""
+    val description: String? = ""
 )

@@ -81,7 +81,8 @@ fun FeedsScreen(
             )
             NewsLazyColumn(
                 news = uiState.categoryNews,
-                navController
+//                navController
+                null
             )
         } else {
             NewsLazyColumn(
@@ -105,7 +106,8 @@ fun FeedsScreen(
                         "2024-03-21T18:13:12Z"
                     )
                 ),
-                navController
+//                navController
+                null
             )
         }
     }

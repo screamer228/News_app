@@ -26,7 +26,7 @@ import com.example.news_app.presentation.model.ColumnNews
 @Composable
 fun NewsLazyColumn(
     news: List<ColumnNews>,
-    navController: NavController
+    navController: NavController?
 ) {
     LazyColumn(
         modifier = Modifier
@@ -37,8 +37,10 @@ fun NewsLazyColumn(
         itemsIndexed(news) { index, item ->
             Box(
                 modifier = Modifier
-                    .clickable {
-                        navController.navigate("$ROUTE_DETAIL_SCREEN${item.title}")
+                    .clickable(
+                        enabled = navController != null
+                    ) {
+                        navController?.navigate("$ROUTE_DETAIL_SCREEN${item.title}")
                     }
                     .height(150.dp)
                     .fillMaxWidth()

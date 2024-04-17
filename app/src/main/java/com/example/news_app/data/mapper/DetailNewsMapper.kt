@@ -12,7 +12,7 @@ class DetailNewsMapper {
             imageUrl = entity.imageUrl,
             author = entity.author ?: "unknown",
             publishedAt = entity.publishedAt,
-            description = entity.description
+            description = entity.description ?: "no description"
         )
     }
 
